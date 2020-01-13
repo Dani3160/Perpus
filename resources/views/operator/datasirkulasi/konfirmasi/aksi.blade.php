@@ -1,0 +1,1 @@
+<a href="{{route('operator.konfirmasi.edit', $sirkulasi_id)}}"><i class="fa fa-edit"></i></a>

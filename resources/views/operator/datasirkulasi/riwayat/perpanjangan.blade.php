@@ -1,0 +1,1 @@
+<a href="{{route('operator.sirkulasi.perpanjangan', $sirkulasi_id)}}"><i class="fa fa-edit"></i></a>
