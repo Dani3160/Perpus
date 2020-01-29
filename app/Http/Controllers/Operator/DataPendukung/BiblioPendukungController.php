@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Operator\DataPendukung;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Model\DataPendukung\Penulis;
 use App\Model\DataPendukung\Penerbit;
 use App\Model\DataPendukung\StatusItem;
@@ -11,6 +12,8 @@ use App\Model\DataPendukung\SumberItem;
 use App\Model\DataPendukung\Klasifikasi;
 use App\Model\DataPendukung\TipeKoleksi;
 use App\Model\DataPendukung\StatusSirkulasi;
+
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\Datatables\Datatables;
 use DB;
 
@@ -28,10 +31,11 @@ class BiblioPendukungController extends Controller
 	    				->get();
 	    	return Datatables::of($penulis)
 	    			->addColumn('action', 'operator.datapendukung.biblio.penulis.action')
-	    			->addIndexColumn()
+					->addIndexColumn()
 	    			->make(true);
 	    }
-	    public function penerbitdatatable()
+		
+		public function penerbitdatatable()
 	    {
 	    	$penerbit = DB::table('penerbit')
 	    				->where('terhapus', '=', '1')
@@ -41,7 +45,8 @@ class BiblioPendukungController extends Controller
 	    			->addIndexColumn()
 	    			->make(true);
 	    }
-	    public function klasifikasidatatable()
+		
+		public function klasifikasidatatable()
 	    {
 	    	$klasifikasi = DB::table('klasifikasi')
 	    					->where('terhapus', '=', '1')
@@ -51,7 +56,8 @@ class BiblioPendukungController extends Controller
 	    			->addIndexColumn()
 	    			->make(true);
 	    }
-	    public function statusitemdatatable()
+		
+		public function statusitemdatatable()
 	    {
 	    	$statusitem = DB::table('status_item')
 	    					->where('terhapus', '=', '1')
@@ -61,7 +67,8 @@ class BiblioPendukungController extends Controller
 	    			->addIndexColumn()
 	    			->make(true);
 	    }
-	    public function sumberitemdatatable()
+		
+		public function sumberitemdatatable()
 	    {
 	    	$sumberitem = DB::table('sumber_item')
 	    					->where('terhapus', '=', '1')
@@ -71,7 +78,8 @@ class BiblioPendukungController extends Controller
 	    			->addIndexColumn()
 	    			->make(true);
 	    }
-	    public function tipekoleksidatatable()
+		
+		public function tipekoleksidatatable()
 	    {
 	    	$tipekoleksi = DB::table('tipekoleksi')
 	    					->where('terhapus', '=', '1')
@@ -81,7 +89,8 @@ class BiblioPendukungController extends Controller
 	    			->addIndexColumn()
 	    			->make(true);
 	    }
-	    public function statussirkulasidatatable()
+		
+		public function statussirkulasidatatable()
 	    {
 	    	$statussirkulasi = DB::table('status_sirkulasi')
 	    						->where('terhapus', '=', '1')
@@ -90,12 +99,6 @@ class BiblioPendukungController extends Controller
 	    			->addColumn('action', 'operator.datapendukung.biblio.statussirkulasi.action')
 	    			->addIndexColumn()
 	    			->make(true); 
-	    }
-
-	 // Tambah data
-	    public function create()
-	    {
-	    	return view('operator.datapendukung.biblio.tambah');
 	    }
 
 	 // Proses insert dan update
@@ -112,9 +115,10 @@ class BiblioPendukungController extends Controller
 	    	}
 	    	$penulis->penulis_nama = $request->penulis_nama;
 	    	$penulis->save();
-	    	return redirect()->route('operator.pendukung.biblio');
+	    	return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Simpan...']);
 	    }
-	    public function storePenerbit(Request $request)
+		
+		public function storePenerbit(Request $request)
 	    {
 	    	$id = $request->get('penerbit_id');
 	    	$hapus = 1;
@@ -126,9 +130,10 @@ class BiblioPendukungController extends Controller
 	    	}
 	    	$penerbit->penerbit_nama = $request->penerbit_nama;
 	    	$penerbit->save();
-	    	return redirect()->route('operator.pendukung.biblio');
+	    	return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Simpan...']);
 	    }
-	    public function storeKlasifikasi(Request $request)
+		
+		public function storeKlasifikasi(Request $request)
 	    {
 	    	$id = $request->get('klasifikasi_id');
 	    	$hapus = 1;
@@ -140,9 +145,10 @@ class BiblioPendukungController extends Controller
 	    	}
 	    	$klasifikasi->klasifikasi_nama = $request->klasifikasi_nama;
 	    	$klasifikasi->save();
-	    	return redirect()->route('operator.pendukung.biblio');
+	    	return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Simpan...']);
 	    }
-	    public function storeTipekoleksi(Request $request)
+		
+		public function storeTipekoleksi(Request $request)
 	    {
 	    	$id = $request->get('tipekoleksi_id');
 	    	$hapus = 1;
@@ -154,9 +160,10 @@ class BiblioPendukungController extends Controller
 	    	}
 	    	$tipekoleksi->tipekoleksi_nama = $request->tipekoleksi_nama;
 	    	$tipekoleksi->save();
-	    	return redirect()->route('operator.pendukung.biblio');
+	    	return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Simpan...']);
 	    } 
-	    public function storeSumberitem(Request $request) 
+		
+		public function storeSumberitem(Request $request) 
 	    {
 	    	$id = $request->get('sumber_item_id');
 	    	$hapus = 1;
@@ -168,9 +175,10 @@ class BiblioPendukungController extends Controller
 	    	} 
 	    	$sumberitem->sumber_item_nama = $request->sumber_item_nama;
 	    	$sumberitem->save();
-	    	return redirect()->route('operator.pendukung.biblio');
+	    	return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Simpan...']);
 	    }
-	    public function storeStatusitem(Request $request)
+		
+		public function storeStatusitem(Request $request)
 	    {
 	    	$id = $request->get('status_item_id');
 	    	$hapus = 1;
@@ -182,9 +190,10 @@ class BiblioPendukungController extends Controller
 	    	}
 	    	$statusitem->status_item_nama = $request->status_item_nama;
 	    	$statusitem->save();
-	    	return redirect()->route('operator.pendukung.biblio');
+	    	return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Simpan...']);
 	    }
-	    public function storeStatussirkulasi(Request $request)
+		
+		public function storeStatussirkulasi(Request $request)
 	    {
 	    	$id = $request->get('status_sirkulasi_id');
 	    	$hapus = 1;
@@ -196,7 +205,7 @@ class BiblioPendukungController extends Controller
 	    	}
 	    	$statussirkulasi->status_sirkulasi_nama = $request->status_sirkulasi_nama;
 	    	$statussirkulasi->save();
-	    	return redirect()->route('operator.pendukung.biblio');
+	    	return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Simpan...']);
 	    }
 
 	// Edit Data
@@ -205,46 +214,49 @@ class BiblioPendukungController extends Controller
 	    	$penulis = Penulis::findOrFail($id);
 	    	return view('operator.datapendukung.biblio.penulis.edit', compact('penulis'));
 	    }
-	    public function editPenerbit($id)
+		
+		public function editPenerbit($id)
 	    {
 	    	$penerbit = Penerbit::findOrFail($id);
 	    	return view('operator.datapendukung.biblio.penerbit.edit', compact('penerbit'));
 	    }
-	    public function editKlasifikasi($id)
+		
+		public function editKlasifikasi($id)
 	    {
 	    	$klasifikasi = Klasifikasi::findOrFail($id);
 	    	return view('operator.datapendukung.biblio.klasifikasi.edit', compact('klasifikasi'));
 	    }
-	    public function editStatusitem($id)
+		
+		public function editStatusitem($id)
 	    {
 	    	$statusitem = StatusItem::findOrFail($id);
 	    	return view('operator.datapendukung.biblio.statusitem.edit', compact('statusitem'));
 	    }
-	    public function editSumberitem($id)
+		
+		public function editSumberitem($id)
 	    {
 	    	$sumberitem = SumberItem::findOrFail($id);
 	    	return view('operator.datapendukung.biblio.sumberitem.edit', compact('sumberitem'));
 	    }
-	    public function editTipekoleksi($id)
+		
+		public function editTipekoleksi($id)
 	    {
 	    	$tipekoleksi = TipeKoleksi::findOrFail($id);
 	    	return view('operator.datapendukung.biblio.tipekoleksi.edit', compact('tipekoleksi'));
 	    } 
-	    public function editStatussirkulasi($id)
+		
+		public function editStatussirkulasi($id)
 	    {
 	    	$statussirkulasi = StatusSirkulasi::findOrFail($id);
 	    	return view('operator.datapendukung.biblio.statussirkulasi.edit', compact('statussirkulasi'));
-	    }
-	 //Import Excel
+		}
+		
+		 //Import Excel
 	    public function importKlasifikasi()
 	    {
 	    	return view('operator.datapendukung.biblio.klasifikasi.import');
 	    }
-	// Riwayat Data
-	    public function riwayat()
-	    {
-	    	return view('operator.datapendukung.biblio.riwayat.riwayat');
-	    }
+	
 		//Datatable
 		public function penulisRiwayatData()
 		{
@@ -309,4 +321,68 @@ class BiblioPendukungController extends Controller
 					->addIndexColumn()
 					->make(true);
 		} 
+
+		// Delete
+		public function deletePenulis(Request $request, $id)
+		{
+			$hapus = 2;
+			$penulis = Penulis::findOrFail($id);
+			$penulis->terhapus = $hapus;
+			$penulis->save();
+			return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Hapus...']);
+		}
+
+		public function deletePenerbit(Request $request, $id)
+		{
+			$hapus = 2;
+			$penerbit = Penerbit::findOrFail($id);
+			$penerbit->terhapus = $hapus;
+			$penerbit->save();
+			return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Hapus...']);
+		}
+
+		public function deleteKlasifikasi(Request $request, $id)
+		{
+			$hapus = 2;
+			$klasifikasi = Klasifikasi::findOrFail($id);
+			$klasifikasi->terhapus = $hapus;
+			$klasifikasi->save();
+			return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Hapus...']);
+		}
+
+		public function deleteStatusItem(Request $request, $id)
+		{
+			$hapus = 2;
+			$statusitem = StatusItem::findOrFail($id);
+			$statusitem->terhapus = $hapus;
+			$statusitem->save();
+			return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Hapus...']);
+		}
+
+		public function deleteSumberItem(Request $request, $id)
+		{
+			$hapus = 2;
+			$sumberitem = SumberItem::findOrFail($id);
+			$sumberitem->terhapus = $hapus;
+			$sumberitem->save();
+			return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Hapus...']);
+		}
+
+		public function deleteTipeKoleksi(Request $request, $id)
+		{
+			$hapus = 2;
+			$tipekoleksi = TipeKoleksi::findOrFail($id);
+			$tipekoleksi->terhapus = $hapus;
+			$tipekoleksi->save();
+			return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Hapus...']);
+		}
+
+		public function deleteStatusSirkulasi(Request $request, $id)
+		{
+			$hapus = 2;
+			$statussirkulasi = StatusSirkulasi::findOrFail($id);
+			$statussirkulasi->terhapus = $hapus;
+			$statussirkulasi->save();
+			return redirect()->route('operator.pendukung.biblio')->with(['success' => 'Data Berhasil Di Hapus...']);
+		}
 }

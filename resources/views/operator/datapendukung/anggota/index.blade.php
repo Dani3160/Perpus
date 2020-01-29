@@ -2,133 +2,172 @@
 @section('judul')
 	Data Pendukung Anggota - Operator
 @stop
-
-@section('subJudul')
-	<h1>Data Pendukung Anggota</h1>
-	<a href="{{ route('operator.tambah.DataPendukung') }}" class="btn btn-primary">Tambah</a>
-@stop
-
 @section('konten')
-	<div class="row">
-		{{-- Tabel Jurusan --}}
-		<div class="col-md-6 col-sm-6 col-xs-12">
-			<div class="x_panel">
-				<div class="x_title">
-					<h2>Data Jurusan</h2>
-					<ul class="nav navbar-right panel_toolbox">
-						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Ekport Data</a>
-								</li>
-								<li><a href="#">Import Data</a>
-								</li>
-							</ul>
-						</li>
-						<li><a class="close-link"><i class="fa fa-close"></i></a>
-						</li>
-					</ul>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
 
-					<table class="table table-bordered" id="jurusan">
-						<thead>
-							<tr>
-								<th>No</th>
-								<th>Nama Jurusan</th>
-								<th>Opsi</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
+<div class="col-md-12 mt-4">
+	<div class="tab mt-5">
+		<button class="tablinks" id="defaultOpen" onclick="openTabs(event, 'listpendukung')">Data Pendukung Anggota</button>
+		<button class="tablinks" onclick="openTabs(event, 'tambah')">Tambah Pendukung Anggota</button>
+	</div>
+</div>
+
+<div id="listpendukung" class="tabcontent">
+	<div class="row mt-4 mb-5">
+		{{-- Tabel Jurusan --}}
+		<div class="col-md-6">
+			<h5 class="text-dark"><i class="fas fa-file"></i> Data Jurusan</h5>
+			<div class="table table-responsive mt-3">
+				<table class="table table-bordered table-striped" id="jurusan">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Nama Jurusan</th>
+							<th>Opsi</th>
+						</tr>
+					</thead>
+				</table>
 			</div>
 		</div>
 		{{-- Bagian Akhir Tabel Jurusan --}}
 
 		{{-- Tabel Kelas --}}
-		<div class="col-md-6 col-sm-6 col-xs-12">
-			<div class="x_panel">
-				<div class="x_title">
-					<h2>Data Kelas</h2>
-					<ul class="nav navbar-right panel_toolbox">
-						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Ekport Data</a>
-								</li>
-								<li><a href="#">Import Data</a>
-								</li>
-							</ul>
-						</li>
-						<li><a class="close-link"><i class="fa fa-close"></i></a>
-						</li>
-					</ul>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-
-					<table class="table table-bordered" id="kelas">
-						<thead>
-							<tr>
-								<th>No</th>
-								<th>Kelas</th>
-								<th>Jurusan</th>
-								<th>Opsi</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
+		<div class="col-md-6">
+			<h5 class="text-dark"><i class="far fa-clone"></i> Data Kelas</h5>
+			<div class="table table-responsive mt-3">
+				<table class="table table-bordered table-striped" id="kelas">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Kelas</th>
+							<th>Jurusan</th>
+							<th>Opsi</th>
+						</tr>
+					</thead>
+				</table>
 			</div>
 		</div>
 		{{-- Bagian Akhir Tabel Kelas --}}
 
 		{{-- Tabel Anggota-Tipe --}}
-		<div class="col-md-6 col-sm-6 col-xs-12">
-			<div class="x_panel">
-				<div class="x_title">
-					<h2>Data Anggota-Tipe</h2>
-					<ul class="nav navbar-right panel_toolbox">
-						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Ekport Data</a>
-								</li>
-								<li><a href="#">Import Data</a>
-								</li>
-							</ul>
-						</li>
-						<li><a class="close-link"><i class="fa fa-close"></i></a>
-						</li>
-					</ul>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-
-					<table class="table table-bordered" id="anggotaTipe">
-						<thead>
-							<tr>
-								<th>No</th>
-								<th>Tipe Anggota</th>
-								<th>Opsi</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
+		<div class="col-md-6">
+			<h5 class="text-dark"><i class="fas fa-user"></i> Data Anggota Tipe</h5>
+			<div class="table table-responsive mt-3">
+				<table class="table table-bordered table-striped" id="anggotaTipe">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Tipe Anggota</th>
+							<th>Opsi</th>
+						</tr>
+					</thead>
+				</table>
 			</div>
 		</div>
 		{{-- Bagian Akhir Tabel Anggota-Tipe --}}
 	</div>
+</div>
+
+<div id="tambah" class="tabcontent">
+	<div class="row mt-4 mb-5">
+		<!-- Form Anggota-Tipe -->
+		<div class="col-md-6">
+			<div class="card shadow">
+				<div class="card-body">
+					<h5 class="text-dark"><i class="fas fa-user"></i> Form Anggota Tipe</h5>
+					<hr>
+					<form class="form-horizontal form-label-left input_mask" action="{{ route('operator.store.DataPendukung.tipe') }}" method="post">
+						@csrf
+						<div class="form-group">
+							<input type="text" class="form-control" name="anggota_tipe_nama" placeholder="Masukkan tipe anggota" required="">
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-success btn-sm float-right"><i class="fas fa-save"></i> Simpan</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Bagian Akhir Form Anggota-Tipe -->
+
+		<!-- Form Jurusan -->
+		<div class="col-md-6">
+			<div class="card shadow">
+				<div class="card-body">
+					<h5 class="text-dark"><i class="fas fa-file"></i> Form Jurusan</h5>
+					<hr>
+					<form class="form-horizontal form-label-left input_mask" action="{{ route('operator.store.DataPendukung.jurusan') }}" method="post">
+						@csrf
+
+						<div class="form-group">
+							<input type="text" class="form-control" name="jurusan_nama" placeholder="Masukkan nama jurusan" required="">
+						</div>
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-success btn-sm float-right"><i class="fas fa-save"></i> Simpan</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Bagian Akhir Form Jurusan -->
+
+		<!-- Form Kelas -->
+		<div class="col-md-6 mt-3">
+			<div class="card shadow">
+				<div class="card-body">
+					<h5 class="text-dark"><i class="far fa-clone"></i> Form Kelas</h5>
+					<hr>
+					<form class="form-horizontal form-label-left input_mask" action="{{ route('operator.store.DataPendukung.kelas') }}" method="post">
+						@csrf
+
+						<div class="form-group">
+							<input type="text" class="form-control" name="kelas_nama" placeholder="Masukkan nama kelas" required="">
+						</div>
+
+						<div class="form-group">
+							<select class="custom-select" name="jurusan_nama" required="">
+								<option>-Pilih Jurusan-</option>
+								@foreach( $jurusan as $j )
+									<option value="{{ $j->jurusan_id }}">{{ $j->jurusan_nama }}</option>
+								@endforeach
+							</select>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-success btn-sm float-right"><i class="fas fa-save"></i> Simpan</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Bagian Akhir Form Kelas -->
+	</div>
+</div>
 @stop
 
 
 @push('scripts')
+<script type="text/javascript">
+	function openTabs(evt, cityName) {
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("tabcontent");
+	
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+
+	tablinks = document.getElementsByClassName("tablinks");
+
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+		document.getElementById(cityName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+	// Get the element with id="defaultOpen" and click on it
+	document.getElementById("defaultOpen").click();
+</script>
 <!-- Tabel Tipe-Anggota -->
 	<script type="text/javascript">
 		$(function(){

@@ -20,11 +20,11 @@ $a2 = strtotime($a);
 
 <?php
 if($now2 < $a2 )
-echo '<button class="btn btn-success"></button>';
+echo '<span class="badge badge-success badge-pill">aman</span>';
 elseif($now2 > $a2)
-echo '<button class="btn btn-danger"></button>';
+echo '<span class="badge badge-danger badge-pill">didenda</span>';
 elseif($now2 === $a2)
-echo '<button class="btn btn-warning"></button>';
+echo '<span class="badge badge-warning badge-pill">tglkembali</span>';
 else
 echo "Tidak ada data";
 ?>

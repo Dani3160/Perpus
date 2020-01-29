@@ -55,52 +55,28 @@ class BiblioController extends Controller
 
 	public function caripenulis(Request $request)
 	{
-		$cari = $request->get('term');
-		$hasil = Penulis::where('penulis_nama', 'LIKE', '%'.$cari.'%')->get();
-		$data = array();
-		foreach ($hasil as $key => $p) 
-		{
-			$data[] = array('value' => $p->penulis_id, 'id' => $p->penulis_id, 'label' => $p->penulis_nama);
-		}
-		if (count($data)) 
-		{
-			return $data;
-		} else {
-			return ['value' => 'Data tidak ada', 'id' => ''];
-		}
+		if ($request->has('q')) {
+            $cari = $request->q;
+            $data = DB::table('penulis')->select('penulis_id', 'penulis_nama')->where('terhapus', '=', 1, 'AND' ,'penulis_nama', 'LIKE', '%'.$cari.'%')->get();
+            return response()->json($data);
+        }
 	}
 
 	public function caripenerbit(Request $request)
 	{
-		$pencarian = $request->get('term');
-		$result = Penerbit::where('penerbit_nama', 'LIKE', '%'.$pencarian.'%')->get();
-		$data = array();
-		foreach ($result as $key => $p) 
-		{
-			$data[] = array('value' => $p->penerbit_id, 'id' => $p->penerbit_id, 'label' => $p->penerbit_nama);
-		}
-		if (count($data)) 
-		{
-			return $data;
-		} else {
-			return ['value' => 'Data tidak ada', 'id' => ''];
-		}
+		if ($request->has('q')) {
+            $cari2 = $request->q;
+            $data = DB::table('penerbit')->select('penerbit_id', 'penerbit_nama')->where('terhapus', '=', 1, 'AND' ,'penerbit_nama', 'LIKE', '%'.$cari2.'%')->get();
+            return response()->json($data);
+        }
 	}	
 	public function carisumberitem(Request $request)
 	{
-		$pencarian = $request->get('term');
-		$result = SumberItem::where('sumber_item_nama', 'LIKE', '%'.$pencarian.'%')->get();
-		$data = array();
-		foreach ($result as $key => $p) 
-		{
-			$data[] = array('value' => $p->sumber_item_id, 'id' => $p->sumber_item_id, 'label' => $p->sumber_item_nama);
-		}
-		if (count($data)) 
-		{
-			return $data;
-		} else {
-			return ['value' => 'Data tidak ada', 'id' => ''];
-		}
+		if ($request->has('q')) {
+            $cari2 = $request->q;
+            $data = DB::table('sumber_item')->select('sumber_item_id', 'sumber_item_nama')->where('terhapus', '=', 1, 'AND' ,'sumber_item_nama', 'LIKE', '%'.$cari2.'%')->get();
+            return response()->json($data);
+        }
 	}	
 
 	public function store(Request $request)
@@ -137,7 +113,7 @@ class BiblioController extends Controller
 				$biblio->lampiran = 0;
 			}
 			$biblio->panggil = $request->panggil;
-			$biblio->eksemplar = $request->panggil.$request->tingkatan.$request->urutan++;
+			$biblio->eksemplar = $request->panggil.$request->tingkatan. '-' .$request->urutan++;
 			$biblio->status_item_id = $request->status_item_id;
 			$biblio->sumber_item_id = $request->sumber_item_id;
 			$biblio->publik = $request->publik;
@@ -221,11 +197,6 @@ class BiblioController extends Controller
 		return Excel::download(new BiblioExport, 'biblio.xlsx');
 	}
 
-	public function uploadexcel() 
-	{
-		return view('operator.datamaster.biblio.import');
-	}
-
 	public function import(Request $request)
 	{
 		if ($request->hasFile('file')) {
@@ -244,11 +215,6 @@ class BiblioController extends Controller
 		return redirect()->route('operator.biblio');
 	}
 
-	//Riwayat biblio
-	public function indexRiwayat()
-	{
-		return view('operator.datamaster.biblio.riwayat.index');
-	}
 	public function riwayatdatatable()
 	{	
 		$riwayat = DB::table('biblio')

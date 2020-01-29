@@ -20,22 +20,20 @@ class AnggotaController extends Controller
 
     public function daftarAnggota()
     {
-        return view('operator.datamaster.anggota.index');
-    }
-
-
-     public function anggotaTambah()
-    {
         $anggotaTipe = AnggotaTipe::all();
         $jurusan = Jurusan::all();
         $kelas = Kelas::all();
-    	return view('operator.datamaster.anggota.tambah', compact('jurusan', 'kelas', 'anggotaTipe'));
+        return view('operator.datamaster.anggota.index', compact('jurusan', 'kelas', 'anggotaTipe'));
     }
-
 
     public function anggotaStore(Request $req)
     {
-        $anggota = new Anggota;
+        $id = $req->get('anggota_id');
+        if ($id) {
+            $anggota = Anggota::findOrFail($id);
+        } else {
+            $anggota = New Anggota;
+        }
         $anggota->anggota_nama = $req->anggota_nama;
         $anggota->anggota_tipe_id = $req->anggota_tipe;
         $anggota->jurusan_id = $req->jurusan_nama;
@@ -52,9 +50,13 @@ class AnggotaController extends Controller
     }
 
 
-    public function anggotaUbah() 
+    public function anggotaUbah($id) 
     {
-    	return view('operator.datamaster.anggota.edit');
+        $anggota = Anggota::findOrFail($id);
+        $anggotaTipe = AnggotaTipe::all();
+        $jurusan = Jurusan::all();
+        $kelas = Kelas::all();
+    	return view('operator.datamaster.anggota.edit', compact('anggota', 'anggotaTipe', 'jurusan', 'kelas'));
     }
 
 
@@ -73,9 +75,16 @@ class AnggotaController extends Controller
         ->get();
 
         return Datatables::of($anggota)
-        ->addColumn('action', 'admin.anggota.action')
+        ->addColumn('action', 'operator.datamaster.anggota.action')
         ->addIndexColumn()
         ->make(true);
+    }
+
+    public function anggotaDelete($id)
+    {
+        $anggota = Anggota::where('anggota_id',$id)->delete();
+
+		return redirect()->route('operator.anggota');
     }
 
 

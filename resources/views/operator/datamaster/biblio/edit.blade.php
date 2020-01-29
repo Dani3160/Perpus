@@ -8,7 +8,7 @@ Edit Biblio - Operator
 	<div class="col-md-12 mt-5 mb-5">
 		<div class="card shadow">
 			<div class="card-body">
-				<h4><i class="fas fa-pen"></i> Edit Biblio</h4>
+				<h4 class="text-dark"><i class="fas fa-pen"></i> Edit Biblio</h4>
 				<hr>
 				{{-- Form Tabel Biblio --}}
 				<form action="{{ route('operator.biblio.ubah', $biblio->biblio_id) }}" method="POST" class="form-horizontal form-label-left input_mask" enctype="multipart/form-data">

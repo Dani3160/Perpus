@@ -17,12 +17,6 @@ use Yajra\Datatables\Datatables;
 
 class SirkulasiController extends Controller
 {
-    // Menu 
-    
-    public function index()
-    {
-        return view('operator.datasirkulasi.index');
-    }
     
     // Peminjaman
     
@@ -39,11 +33,12 @@ class SirkulasiController extends Controller
 		// }
         $anggota = Anggota::all();
         $status = StatusSirkulasi::where('status_sirkulasi_nama', '=', 'Peminjaman')->get();
+        $status2 = StatusSirkulasi::where('status_sirkulasi_nama', '=', 'Pengembalian')->get();
         $biblio = Biblio::where('status_item_id', 1)
         ->orderBy('judul', 'asc')
         ->take(10)
         ->get();
-        return view('operator.datasirkulasi.peminjaman', ['anggota' => $anggota, 'biblio' => $biblio, 'status' => $status]);
+        return view('operator.datasirkulasi.peminjaman', ['anggota' => $anggota, 'biblio' => $biblio, 'status' => $status, 'status2' => $status2]);
     }
     
     public function peminjamanProses(Request $request)
@@ -99,7 +94,7 @@ class SirkulasiController extends Controller
         $b = DB::table('status_item')->where('status_item_nama', '=', 'Dipinjam')->get()->first();
         $biblio->status_item_id = $b->status_item_id;
         $biblio->save();
-        return redirect()->route('operator.lihat.peminjaman');
+        return redirect()->route('operator.sirkulasi');
     }
 
     // Akhir Peminjaman
@@ -108,50 +103,32 @@ class SirkulasiController extends Controller
 
     public function searchAnggota(Request $request)
     {
-        $search = $request->get('term');
-        $anggota = DB::table('anggota')->where('anggota_nama','LIKE','%'.$search."%")->get();
-        $data=array();
-        foreach ($anggota as $a) {
-                $data[]=array('value'=>$a->anggota_id,'id'=>$a->anggota_id, 'label'=>$a->anggota_nama);
+        if ($request->has('q')) {
+            $cari = $request->q;
+            $query = DB::table('anggota_tipe')->where('anggota_tipe_nama', '=', 'Siswa', 'AND', 'anggota_tipe_nama', '=', 'Guru')->first();
+            $data = DB::table('anggota')->select('anggota_id', 'anggota_nama')->where('anggota_tipe_id', '=', $query->anggota_tipe_id, 'AND', 'anggota_nama', 'LIKE', '%'.$cari.'%')->get();
+            return response()->json($data);
         }
-        if(count($data))
-             return $data;
-        else
-            return ['value'=>'No Result Found','id'=>''];
     }
     
     public function searchBiblio(Request $request)
     {
-        $search = $request->get('term');
-        $b = DB::table('status_item')->where('status_item_nama', '=', 'Tersedia')->first();
-        $buku = DB::table('biblio')->where('terhapus', '=', 1)->get();
-        $biblio = DB::table('biblio')->where('status_item_id', '=', $b->status_item_id, 'AND' ,'terhapus', '=', 1, 'AND' ,'judul','LIKE','%'.$search.'%')->get();
-
-        $data=array();
-        foreach ($biblio as $a) {
-             $data[]=array('value'=>$a->biblio_id, 'id'=>$a->biblio_id, 'label'=>$a->judul);
+        if ($request->has('q')) {
+            $cari = $request->q;
+            $b = DB::table('status_item')->where('status_item_nama', '=', 'Tersedia')->first();
+            $data = DB::table('biblio')->select('biblio_id', 'judul', 'eksemplar')->where('status_item_id', '=', $b->status_item_id, 'AND' , 'terhapus', '=', 1, 'AND' , 'judul', 'LIKE', '%'.$cari.'%')->get();
+            return response()->json($data);
         }
-        if(count($data))
-             return $data;
-        else
-            return ['value'=>'No Result Found','id'=>''];
-
     }
     
     public function searchBiblioBack(Request $request)
     {
-        $search = $request->get('term');
-        // $b = DB::table('status_item')->where('status_item_nama', '=', 'Dipinjam')->get()->first();
-        // $tabel = DB::table('biblio')->where('status_item_id', '=', $b->status_item_id);
-        $biblio = DB::table('biblio')->where('judul', 'LIKE', '%'.$search."%")->get();
-        $data=array();
-        foreach ($biblio as $a) {
-             $data[]=array('value'=>$a->biblio_id, 'id'=>$a->biblio_id, 'label'=>$a->judul);
+        if ($request->has('q')) {
+            $cari = $request->q;
+            $b = DB::table('status_item')->where('status_item_nama', '=', 'Dipinjam')->first();
+            $data = DB::table('biblio')->select('biblio_id', 'judul', 'eksemplar')->where('status_item_id', '=', $b->status_item_id, 'AND' ,'terhapus', '=', 1, 'AND' ,'judul', 'LIKE', '%'.$cari.'%')->get();
+            return response()->json($data);
         }
-        if(count($data))
-             return $data;
-        else
-            return ['value'=>'No Result Found','id'=>''];
 
     }
 
@@ -189,23 +166,12 @@ class SirkulasiController extends Controller
         $sirkulasi->kembali_pinjam = date('Y-'.+$c. '-'.+$b);
         $sirkulasi->status_sirkulasi_id = $request->status_sirkulasi_id;
         $sirkulasi->save();
-        return redirect()->route('operator.lihat.peminjaman');
+        return redirect()->route('operator.sirkulasi');
     }
 
     // Akhir Perpanjangan
     
     // Pengembalian
-    
-    public function pengembalian()
-    {
-        $anggota = Anggota::all();
-        $status = StatusSirkulasi::where('status_sirkulasi_nama', '=', 'Pengembalian')->get();
-        $biblio = Biblio::where('status_item_id', 1)
-        ->orderBy('judul', 'asc')
-        ->take(10)
-        ->get();
-        return view('operator.datasirkulasi.pengembalian', ['anggota' => $anggota, 'biblio' => $biblio, 'status' => $status]);
-    }
     
     public function pengembalianProses(Request $request)
     {
@@ -263,19 +229,14 @@ class SirkulasiController extends Controller
         $b = DB::table('status_item')->where('status_item_nama', '=', 'Tersedia')->get()->first();
         $biblio->status_item_id = $b->status_item_id;
         $biblio->save();
-        return redirect()->route('operator.lihat.pengembalian');
+        return redirect()->route('operator.sirkulasi');
     }
 
     // Akhir Pengembalian
     
     // Riwayat 
 
-    // Peminjaman
-
-    public function lihatPeminjaman()
-    {
-        return view('operator.datasirkulasi.riwayat.peminjaman');
-    }
+    // Datatable Peminjaman
 
     public function riwayatPeminjaman()
     {
@@ -299,42 +260,7 @@ class SirkulasiController extends Controller
 
     }
 
-    // public function searchPeminjaman(Request $request)
-    // {
-    //     $cari = $request->cari;
-
-    //     $status = DB::table('status_sirkulasi')->where('status_sirkulasi_nama', '=', 'Peminjaman')->first();
-
-    //     // $oke = DB::table('sirkulasi')->
-    //     // where('status_sirkulasi_id', '=', $status->status_sirkulasi_id);
-
-    //     $peminjaman = DB::table('sirkulasi')
-    //     ->join('anggota', 'sirkulasi.anggota_id', '=', 'anggota.anggota_id')
-    //     ->join('biblio', 'sirkulasi.biblio_id', '=', 'biblio.biblio_id')
-    //     ->select('sirkulasi.*', 'anggota.anggota_nama', 'biblio.judul', 'biblio.eksemplar')
-    //     ->where('anggota_nama', 'LIKE', "%".$cari."%", "AND" , 'status_sirkulasi_id', '=', $status->status_sirkulasi_id)->paginate(5);
-        
-    //     $wk = DB::table('sirkulasi')->first();
-        
-    //     $sirkulasi = DB::table('sirkulasi')->where('sirkulasi_id', '=', $wk->sirkulasi_id)->get();
-        
-    //     $now = Carbon::now()->format('Y'.'m'.'d'); 
-    //     $now2 = strtotime($now);
-        
-    //     foreach($sirkulasi as $s){
-    //         $a = $s->kembali_pinjam;
-    //         $a2 = strtotime($a);
-    //     }
-
-    //     return view('operator.datasirkulasi.riwayat.peminjaman', compact('peminjaman', 'now2', 'a2'));
-    // }
-
-    // Pengembalian
-    public function lihatPengembalian()
-    {
-        return view('operator.datasirkulasi.riwayat.pengembalian');
-    }
-
+    // Datatable Pengembalian
     public function riwayatPengembalian()
     {
         $status = DB::table('status_sirkulasi')->where('status_sirkulasi_nama', '=', 'Pengembalian')->get()->first();

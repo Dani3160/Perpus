@@ -1,10 +1,6 @@
-@extends('layouts.admin.master')
+@extends('layouts.operator.master')
 
 @section('judul', 'Profile')
-
-@section('subJudul')
-<h3>Halaman Sistem</h3>
-@stop
 
 @section('konten')
 <div class="row"> <!-- Start Row1 -->

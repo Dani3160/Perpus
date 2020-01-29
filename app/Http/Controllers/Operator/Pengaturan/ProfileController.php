@@ -15,16 +15,27 @@ class ProfileController extends Controller
    	  $anggota = Anggota::find($id);
    	  return view('operator.pengaturan.profile.index', compact('anggota'));
    }
+
    
 
    public function profileUpdate(Request $request, $id)
    {
-   	 $anggota = Anggota::find($id);
+       $anggota = Anggota::find($id);
+       
+       if ( $request->hasFile('foto') ) {
+         $foto = $request->file('foto');
+         $fillename = time() . '.' . $foto->getClientOriginalExtension();
+         Image::make($foto)->save(public_path('/operator/images/profile/' . $fillename));
+         $anggota->foto = $fillename;
+      }
+
+
    	 $anggota->anggota_nama = $request->anggota_nama; 
    	 $anggota->tanggal_lahir = $request->tanggal_lahir; 
    	 $anggota->alamat = $request->alamat; 
    	 $anggota->jenis_kelamin = $request->jenis_kelamin; 
-   	 $anggota->telepon = $request->telepon; 
+       $anggota->telepon = $request->telepon; 
+       
    	 $anggota->whatsapp = $request->whatsapp; 
    	 $anggota->facebook = $request->facebook; 
    	 $anggota->instagram = $request->instagram; 
@@ -46,7 +57,7 @@ class ProfileController extends Controller
       if ( $request->hasFile('foto') ) {
          $foto = $request->file('foto');
          $fillename = time() . '.' . $foto->getClientOriginalExtension();
-         Image::make($foto)->save(public_path('/images/profile/' . $fillename));
+         Image::make($foto)->save(public_path('/operator/images/profile/' . $fillename));
 
          $anggota = Anggota::find($id);
          $anggota->foto = $fillename;

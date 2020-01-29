@@ -18,7 +18,8 @@ class AnggotaPendukungController extends Controller
 {
     public function anggotaPendukung()
     {
-    	return view('operator.datapendukung.anggota.index');
+        $jurusan = Jurusan::all();
+    	return view('operator.datapendukung.anggota.index', compact('jurusan'));
     }
 
 
@@ -56,14 +57,6 @@ class AnggotaPendukungController extends Controller
     	->make(true);
     }
 
-
-
-    public function tambahDatapendukung()
-    {
-        $jurusan = Jurusan::all();
-        return view('operator.datapendukung.anggota.tambah', compact('jurusan'));
-    }
-
     public function ubahAnggotaTipe($id)
     {
         $anggotaTipe = AnggotaTipe::find($id);
@@ -96,7 +89,7 @@ class AnggotaPendukungController extends Controller
         $anggotaTipe->anggota_tipe_nama = $req->anggota_tipe_nama;
         $anggotaTipe->save();
 
-        return redirect()->route('anggota.datapendukung');
+        return redirect()->route('operator.anggota.pendukung');
     }
 
 
@@ -113,7 +106,7 @@ class AnggotaPendukungController extends Controller
         $jurusan->jurusan_nama = $req->jurusan_nama;
         $jurusan->save();
 
-        return redirect()->route('anggota.datapendukung');
+        return redirect()->route('operator.anggota.pendukung');
     }
 
 
@@ -131,7 +124,7 @@ class AnggotaPendukungController extends Controller
         $kelas->jurusan_id = $req->jurusan_nama;
         $kelas->save();
 
-        return redirect()->route('anggota.datapendukung');
+        return redirect()->route('operator.anggota.pendukung');
     }
 
 }

@@ -10,46 +10,34 @@ Tambah Data-Pendukung Anggota (Operator)
 @stop
 
 @section('konten')
-<div class="row">
+<div class="row justify-content-center mt-5">
 	<!-- Form Anggota-Tipe -->
-	<div class="col-md-12 col-xs-12">
-		<div class="x_panel">
-			<div class="x_title">
-				<h2>Form Kelas</h2>
-				<ul class="nav navbar-right panel_toolbox">
-					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-					</li>
-					<li><a class="close-link"><i class="fa fa-close"></i></a>
-					</li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-			<div class="x_content">
-				<br />
+	<div class="col-md-6 mt-5">
+		<div class="card shadow mt-5">
+			<div class="card-body">
+				<h5 class="text-dark">Form Kelas</h5>
+				<hr>
+
 				<form class="form-horizontal form-label-left input_mask" action="{{ route('operator.store.DataPendukung.kelas') }}" method="post">
 					@csrf
 
 					<div class="form-group">
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<input type="text" class="form-control" name="kelas_nama" value="{{ $kelas->kelas_nama }}">
-							<br />
-							<select class="form-control" name="jurusan_nama" required="">
-								<option selected="" disabled="">-Pilih Jurusan-</option>
-								@foreach( $jurusan as $j )
-									<option value="{{ $j->jurusan_id }}">{{ $j->jurusan_nama }}</option>
-								@endforeach
-							</select>
-							<input type="hidden" name="kelas_id" value="{{ $kelas->kelas_id }}">
-						</div>
+						<input type="text" class="form-control" name="kelas_nama" value="{{ $kelas->kelas_nama }}">
+						<br />
+						<select class="form-control" name="jurusan_nama" required="">
+							<option selected="" disabled="">-Pilih Jurusan-</option>
+							@foreach( $jurusan as $j )
+								<option value="{{ $j->jurusan_id }}">{{ $j->jurusan_nama }}</option>
+							@endforeach
+						</select>
+						<input type="hidden" name="kelas_id" value="{{ $kelas->kelas_id }}">
 					</div>
-					<div class="ln_solid"></div>
 					<div class="form-group">
-						<div class="col-md-12 col-sm-12 col-xs-12 ">
-							<button type="submit" class="btn btn-success form-control">Submit</button>
-						</div>
+						<button type="submit" class="btn btn-success float-right btn-sm"><i class="fas fa-save"></i> Simpan</button>
 					</div>
 
 				</form>
+
 			</div>
 		</div>
 	</div>

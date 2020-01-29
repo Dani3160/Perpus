@@ -8,7 +8,7 @@
 	<div class="col-md-12 mt-5 mb-3">
 		<div class="card shadow">
 			<div class="card-body">
-				<h4><i class="fas fa-search"></i> Detail Biblio</h4>
+				<h4 class="text-dark"><i class="fas fa-search"></i> Detail Biblio</h4>
 				<hr>
 				<form action="#" class="form-horizontal form-label-left input_mask" enctype="multipart/form-data">
 					@csrf

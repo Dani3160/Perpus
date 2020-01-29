@@ -10,6 +10,7 @@ Biblio - Operator
 	<div class="tab mt-5">
 		<button class="tablinks" id="defaultOpen" onclick="openTabs(event, 'list-tabel')">Data Biblio</button>
 		<button class="tablinks" onclick="openTabs(event, 'tambah')">Tambah Biblio</button>
+		<button class="tablinks" onclick="openTabs(event, 'import')">Import Data</button>
 		<button class="tablinks" onclick="openTabs(event, 'riwayat')">Riwayat</button>
 	</div>
 		<!-- Tampil Biblio -->
@@ -17,7 +18,7 @@ Biblio - Operator
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-9">
-						<h3 class="mt-4"><i class="fas fa-book"></i> Data Biblio</h3>
+						<h4 class="text-dark mt-4 mb-4"><i class="fas fa-book"></i> Data Biblio</h4>
 					</div>
 					<div class="col-md-3">
 						<a href="{{route('operator.biblio.export')}}" class="btn btn-success btn-sm float-right mt-4"><i class="fas fa-download"></i> Export Data</a>
@@ -61,11 +62,11 @@ Biblio - Operator
 								<div class="row">
 									<div class="col-md-4 form-group">
 										<label for="judul">Judul*</label>
-										<input type="text" name="judul" class="form-control" placeholder="Judul Buku" autocomplete="off" value="{{ old('judul') }}">
+										<input type="text" name="judul" class="form-control" placeholder="Judul Buku" autocomplete="off" value="{{ old('judul') }}" required>
 									</div>
 									<div class="col-md-4 form-group">
 										<label for="edisi">Edisi*</label>
-										<input type="text" name="edisi" class="form-control" placeholder="Edisi Buku" autocomplete="off" value="{{ old('edisi') }}">
+										<input type="text" name="edisi" class="form-control" placeholder="Edisi Buku" autocomplete="off" value="{{ old('edisi') }}" required>
 									</div>
 									<div class="col-md-4 form-group">
 										<label for="penerbit_tempat">Tempat Terbit Buku*</label>
@@ -77,15 +78,15 @@ Biblio - Operator
 								<div class="row">
 									<div class="col-md-4 form-group">
 										<label for="penulis_id">Penulis*</label>
-										<input type="text" name="penulis_id" class="form-control" id="penulis_id" autocomplete="off" placeholder="Cari Penulis">
+										<select class="cari form-control" style="width: 100%;" name="penulis_id" required></select>
 									</div>
 									<div class="col-md-4 form-group">
 										<label for="isbn">ISBN*</label>
-										<input type="text" name="isbn" class="form-control" id="isbn" placeholder="ISBN" autocomplete="off" value="{{ old('isbn') }}">
+										<input type="text" name="isbn" class="form-control" id="isbn" placeholder="ISBN" autocomplete="off" value="{{ old('isbn') }}" required>
 									</div>
 									<div class="col-md-4 form-group">
 										<label for="penerbit_id">Penerbit*</label>
-										<input type="text" name="penerbit_id" class="form-control" id="penerbit_id" autocomplete="off" placeholder="Cari Penerbit">
+										<select class="cari2 form-control" style="width: 100%;" required name="penerbit_id"></select>
 									</div>
 								</div>
 							</div>
@@ -100,17 +101,13 @@ Biblio - Operator
 										<input type="text" name="penerbit_tahun" class="form-control" id="penerbit_tahun" autocomplete="off" value="{{ old('penerbit_tahun') }}">
 									</div>
 									<div class="col-md-4 form-group">
-										<label for="penerbit_tahun">Tahun Terbit Buku*</label>
-										<input type="text" name="penerbit_tahun" class="form-control" id="penerbit_tahun" autocomplete="off" value="{{ old('penerbit_tahun') }}">
+										<label for="deskripsi">Deskripsi*</label>
+										<textarea name="deskripsi" class="form-control" rows="3" placeholder="Isi secara singkat..." id="deskripsi">{{ old('deskripsi') }}</textarea>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="row">
-									<div class="col-md-4 form-group">
-										<label for="deskripsi">Deskripsi*</label>
-										<textarea name="deskripsi" class="form-control" rows="3" placeholder="Isi secara singkat..." id="deskripsi">{{ old('deskripsi') }}</textarea>
-									</div>
 									<div class="col-md-4 form-group">
 										<label for="tipekoleksi_id">Tipe Koleksi*</label>
 										<select name="tipekoleksi_id" class="form-control">
@@ -129,14 +126,14 @@ Biblio - Operator
 											@endforeach
 										</select>
 									</div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="row">
 									<div class="col-md-4 form-group">
 										<label for="panggil">Panggil Rak Buku*</label>
 										<input type="text" name="panggil" class="form-control" id="panggil" autocomplete="off" value="{{ old('panggil') }}">
 									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="row">
 									<div class="col-md-4 form-group">
 										<label for="tingkat">Tingkatan Rak Buku*</label>
 										<input type="number" name="tingkatan" class="form-control" id="tingkatan" autocomplete="off" value="{{ old('tingkatan') }}">
@@ -145,15 +142,14 @@ Biblio - Operator
 										<label for="urutan">Urutan Buku*</label>
 										<input type="number" name="urutan" class="form-control" id="urutan" autocomplete="off" value="{{ old('urutan') }}">
 									</div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="row">
 									<div class="col-md-4 form-group">
 										<label for="lampiran">Lampiran Buku*</label>
 										<input type="file" name="lampiran" class="form-control" id="lampiran">
 									</div>
-
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="row">
 									<div class="col-md-4 form-group">
 										<label>Status Buku*</label>
 										<select name="status_item_id" class="form-control">
@@ -165,16 +161,16 @@ Biblio - Operator
 									</div>
 									<div class="col-md-4 form-group">
 										<label for="gambar">Gambar Buku*</label>
-										<input type="file" name="gambar" class="form-control" id="gambar" required=""> 
+										<input type="file" name="gambar" class="form-control" id="gambar"> 
+									</div>
+									<div class="col-md-4 form-group">
+										<label for="sumber_item_id">Sumber Buku*</label>
+										<select class="cari3 form-control" style="width: 100%;" name="sumber_item_id"></select>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="row">
-									<div class="col-md-4 form-group">
-										<label for="sumber_item_id">Sumber Buku*</label>
-										<input type="text" name="sumber_item_id" id="sumber_item_id" class="form-control" autocomplete="off">
-									</div>
 									<div class="col-md-4 form-group">
 										<label>
 											<input type="checkbox" name="publik" value="1"> Publik
@@ -186,19 +182,14 @@ Biblio - Operator
 											<input type="checkbox" name="promosi" value="1"> Promosi
 										</label>
 									</div>
+									<div class="col-md-4">
+										<input type="number" name="buku_tersedia" class="form-control" autocomplete="off" placeholder="Masukan Jumlah Buku yang Tersedia">
+									</div>
 								</div>
 							</div>
 								
 							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-6">
-										<input type="number" name="buku_tersedia" class="form-control" autocomplete="off" placeholder="Masukan Jumlah Buku yang Tersedia">
-									</div>
-									<div class="col-md-6">
-										<button type="submit" class="btn btn-primary mb-5">Simpan</button>
-									</div>
-									
-								</div>
+								<button type="submit" class="btn btn-success mb-5"><i class="fas fa-save"></i> Save</button>
 							</div>
 								
 						</form>
@@ -208,11 +199,32 @@ Biblio - Operator
 		</div>
 		<!-- End Tambah Biblio -->
 
+		<!-- Import Data -->
+    
+		<div id="import" class="tabcontent">
+			<div class="card mt-5">
+				<div class="card-body">
+				<h4 class="text-dark"><i class="fas fa-upload"></i> Import Data</h4>
+				<hr>
+					<form action="{{ route('operator.biblio.import.excel') }}" method="POST" enctype="multipart/form-data">
+						@csrf
+						<div class="form-group">
+							<label for="file">File*</label>
+							<input type="file" name="file" class="form-control" required>
+						</div>  
+						<a href="{{ route('operator.biblio') }}" class="btn btn-danger"><i class="fas fa-arrow-left"></i> Kembali</a>
+						<button type="submit" class="btn btn-success"><i class="fas fa-upload"></i> Import</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	
+		<!-- End Import Data -->
+
 		<!-- Riwayat Biblio -->
-		<div id="riwayat" class="tabcontent">
-			<h3 class="mt-4">Riwayat Biblio</h3>
+		<div id="riwayat" class="tabcontent">			
 					
-				<div class="table table-responsive">
+				<div class="table table-responsive mt-4">
 					<div class="col-md-12">
 						<div class="row">
 					<!-- Tabel Biblio -->
@@ -306,5 +318,70 @@ function openTabs(evt, cityName) {
 }
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+</script>
+@endpush
+@push('scripts')
+<script type="text/javascript">
+  $('.cari').select2({
+    placeholder: 'Cari...',
+    ajax: {
+      url: '/operator/biblio/penulis/cari',
+      dataType: 'json',
+      delay: 250,
+      processResults: function (data) {
+        return {
+          results:  $.map(data, function (item) {
+            return {
+              text: item.penulis_nama,
+              id: item.penulis_id
+            }
+          })
+        };
+      },
+      cache: true
+    }
+  });
+</script>
+<script type="text/javascript">
+  $('.cari2').select2({
+    placeholder: 'Cari...',
+    ajax: {
+      url: '/operator/biblio/penerbit/cari',
+      dataType: 'json',
+      delay: 250,
+      processResults: function (data) {
+        return {
+          results:  $.map(data, function (item) {
+            return {
+              text: item.penerbit_nama,
+              id: item.penerbit_id
+            }
+          })
+        };
+      },
+      cache: true
+    }
+  });
+</script>
+<script type="text/javascript">
+  $('.cari3').select2({
+    placeholder: 'Cari...',
+    ajax: {
+      url: '/operator/biblio/sumberitem/cari',
+      dataType: 'json',
+      delay: 250,
+      processResults: function (data) {
+        return {
+          results:  $.map(data, function (item) {
+            return {
+              text: item.sumber_item_nama,
+              id: item.sumber_item_id
+            }
+          })
+        };
+      },
+      cache: true
+    }
+  });
 </script>
 @endpush
