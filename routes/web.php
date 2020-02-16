@@ -13,6 +13,9 @@
 
 Auth::routes();
 
+Route::get('/', function(){
+	return view('landing');
+});
 Route::get('/home', 'HomeController@index')->name('home');
 
 // User
@@ -28,11 +31,6 @@ Route::prefix('user')->group(function(){
 	});
 	
 });
-
-Route::get('/', function () {
-    return view('user.landing');
-});
-
 
 //Auth
 Route::get('/Masuk', 'Auth\LoginController@ShowMasukForm')->name('Masuk');

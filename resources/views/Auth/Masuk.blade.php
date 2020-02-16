@@ -33,10 +33,10 @@
 							<form class="user" action="{{route('login')}}" method="post">
 								@csrf
 								<div class="form-group">
-									<input type="email" name="posel" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" autocomplete="off">
+									<input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" autocomplete="off">
 								</div>
 								<div class="form-group">
-									<input type="password" name="katasandi" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" autocomplete="off">
+									<input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" autocomplete="off">
 								</div>
 								<div class="form-group">
 									<div class="custom-control custom-checkbox small">
