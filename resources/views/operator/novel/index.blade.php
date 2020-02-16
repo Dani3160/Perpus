@@ -43,7 +43,7 @@ Novel - Operator
     ajax: '{!! route('operator.novel.datatable') !!}',
     columns: [
     {data: 'DT_RowIndex', name: 'novel_id', width: '150px'},
-    {data: 'anggota_nama', name: 'anggota_nama', width: '140px'},
+    {data: 'name', name: 'name', width: '140px'},
     {data: 'novel_judul', name: 'novel_judul', },
     {data: 'novel_karya', name: 'novel_karya', },
     {data: 'konfirmasi', name: 'konfirmasi', },

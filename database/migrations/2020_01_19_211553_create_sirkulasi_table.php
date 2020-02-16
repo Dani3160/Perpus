@@ -24,7 +24,7 @@ class CreateSirkulasiTable extends Migration
             $table->unsignedBigInteger('aturan_id')->nullable();
             $table->unsignedBigInteger('status_sirkulasi_id')->nullable();
 
-            $table->foreign('anggota_id')->references('anggota_id')->on('anggota')->onDelete('cascade');
+            $table->foreign('anggota_id')->references('anggota_id')->on('users')->onDelete('cascade');
             $table->foreign('biblio_id')->references('biblio_id')->on('biblio')->onDelete('cascade');
             $table->foreign('aturan_id')->references('aturan_id')->on('aturan')->onDelete('cascade');
             $table->foreign('status_sirkulasi_id')->references('status_sirkulasi_id')->on('status_sirkulasi')->onDelete('cascade');

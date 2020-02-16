@@ -19,7 +19,7 @@ class CreatePengaturanTable extends Migration
             $table->string('tempat', 100)->nullable();
             $table->unsignedBigInteger('anggota_id')->nullable();
 
-            $table->foreign('anggota_id')->references('anggota_id')->on('anggota')->onDelete('cascade');
+            $table->foreign('anggota_id')->references('anggota_id')->on('users')->onDelete('cascade');
             $table->date('operasional_awal')->nullable();
             $table->date('operasional_akhir')->nullable();
             $table->timestamp('pembuatan')->nullable();

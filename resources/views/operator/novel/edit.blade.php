@@ -33,7 +33,7 @@ Konfirmasi Novel - Operator
 								<select name="anggota_id" id="" class="custom-select">
                                     @foreach($anggota as $value => $data)
                                         @if($novel->anggota_id == $data->anggota_id)
-                                        <option value="{{$data->anggota_id}}" selected readonly>{{$data->anggota_nama}}</option>
+                                        <option value="{{$data->anggota_id}}" selected readonly>{{$data->name}}</option>
                                         @endif
                                     @endforeach
                                 </select>

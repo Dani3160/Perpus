@@ -22,9 +22,9 @@ Resume - Operator
                     <option value="">Pilih Anggota</option>
                     @foreach($anggota as $value => $data)
                         @if($resume->anggota_id == $data->anggota_id)
-                            <option value="{{$data->anggota_id}}" selected>{{$data->anggota_nama}}</option>
+                            <option value="{{$data->anggota_id}}" selected>{{$data->name}}</option>
                         @else 
-                            <option value="{{$data->anggota_id}}">{{$data->anggota_nama}}</option>
+                            <option value="{{$data->anggota_id}}">{{$data->name}}</option>
                         @endif
                     @endforeach
                   </select>

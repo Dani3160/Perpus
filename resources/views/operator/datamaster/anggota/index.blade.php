@@ -47,19 +47,8 @@ Anggota - Operator
 						@csrf
 						<div class="row">
 							<div class="form-group col-md-6">
-								<input type="text" class="form-control" name="anggota_nama" placeholder="Nama Anggota" required="">
+								<input type="text" class="form-control" name="name" placeholder="Nama Anggota" required="">
 							</div>
-							<div class="form-group col-md-6">
-								<select class="form-control" name="anggota_tipe" required="">
-									<option>-Pilih Level-</option>
-									@foreach( $anggotaTipe as $aT )
-										<option value="{{ $aT->anggota_tipe_id }}">{{ $aT->anggota_tipe_nama }}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-
-						<div class="row">
 							<div class="form-group col-md-6">
 								<select class="form-control" name="jurusan_nama">
 									<option>-Pilih Jurusan-</option>
@@ -68,7 +57,9 @@ Anggota - Operator
 									@endforeach
 								</select>
 							</div>
+						</div>
 
+						<div class="row">
 							<div class="form-group col-md-6">
 								<select class="form-control" name="kelas_nama">
 									<option>-Pilih Kelas-</option>
@@ -77,12 +68,12 @@ Anggota - Operator
 									@endforeach
 								</select>
 							</div>
+							<div class="form-group col-md-6">
+								<input type="email" class="form-control" name="email" placeholder="Pos-el" required="">
+							</div>
 						</div>
 
 						<div class="row">
-							<div class="form-group col-md-6">
-								<input type="email" class="form-control" name="posel" placeholder="Pos-el" required="">
-							</div>
 
 							<div class="form-group col-md-6">
 								<input type="password" class="form-control" name="password" placeholder="Katasandi" required="">
@@ -91,6 +82,14 @@ Anggota - Operator
 							<div class="form-group col-md-6">
 								<input type="password" class="form-control" name="password2" placeholder="Konfirmasi Katasandi" required="">
 							</div>
+						</div>
+
+						<div class="form-group">
+							<select name="role" id="" class="custom-select">
+								<option value="">Pilih Kelas Akun</option>
+								<option value="Siswa">Siswa</option>
+								<option value="Operator">Operator</option>
+							</select>
 						</div>
 
 						<div class="form-group mb-5">
@@ -116,12 +115,12 @@ Anggota - Operator
 			"bDestroy": true,
 			ajax: '{!! route('operator.anggota.datatables') !!}',
 			columns: [
-			{data: 'DT_RowIndex', name: 'DT_RowIndex', width: '5px',},
-			{data: 'anggota_nama', name: 'anggota_nama', width: '50px', orderable: true},
-			{data: 'jurusan_nama', name: 'jurusan_id', width: '30px', orderable: true},
-			{data: 'kelas_nama', name: 'kelas_id', width: '30px', orderable: true},
-			{data: 'anggota_tipe_nama', name: 'anggota_tipe_id', width: '30px', orderable: true},
-			{data: 'posel', name: 'posel', width: '30px', orderable: true},
+			{data: 'DT_RowIndex', name: 'anggota_id', width: '5px',},
+			{data: 'name', name: 'name', width: '50px', orderable: true},
+			{data: 'jurusan_nama', name: 'jurusan_nama', width: '30px', orderable: true},
+			{data: 'kelas_nama', name: 'kelas_nama', width: '30px', orderable: true},
+			{data: 'role', name: 'role', width: '30px', orderable: true},
+			{data: 'email', name: 'email', width: '30px', orderable: true},
 			{data: 'action', name: 'action', width: '100px', orderable: false, searchable: false,},
 			]
 		});

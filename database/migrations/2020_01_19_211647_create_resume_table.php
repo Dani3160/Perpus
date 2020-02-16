@@ -18,7 +18,7 @@ class CreateResumeTable extends Migration
             $table->unsignedBigInteger('anggota_id')->nullable();
             $table->unsignedBigInteger('kelas_id')->nullable();
 
-            $table->foreign('anggota_id')->references('anggota_id')->on('anggota')->onDelete('cascade');
+            $table->foreign('anggota_id')->references('anggota_id')->on('users')->onDelete('cascade');
             $table->foreign('kelas_id')->references('kelas_id')->on('kelas')->onDelete('cascade');
 
             $table->string('resume_judul', 100)->nullable();

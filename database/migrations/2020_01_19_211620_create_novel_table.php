@@ -22,7 +22,7 @@ class CreateNovelTable extends Migration
             $table->string('konfirmasi', 1)->nullable();
             $table->unsignedBigInteger('anggota_id')->nullable();
 
-            $table->foreign('anggota_id')->references('anggota_id')->on('anggota')->onDelete('cascade');
+            $table->foreign('anggota_id')->references('anggota_id')->on('users')->onDelete('cascade');
             $table->timestamp('pembuatan')->nullable();
             $table->timestamp('perubahan')->nullable();
         });

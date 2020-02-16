@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\DataPendukung\Jurusan;
 use App\Model\DataPendukung\Kelas;
-use App\Model\DataPendukung\AnggotaTipe;
-use App\Model\DataMaster\Anggota;
+use App\Model\DataMaster\User;
 use Yajra\Datatables\Datatables;
 
 class AnggotaController extends Controller
@@ -20,27 +19,26 @@ class AnggotaController extends Controller
 
     public function daftarAnggota()
     {
-        $anggotaTipe = AnggotaTipe::all();
         $jurusan = Jurusan::all();
         $kelas = Kelas::all();
-        return view('operator.datamaster.anggota.index', compact('jurusan', 'kelas', 'anggotaTipe'));
+        return view('operator.datamaster.anggota.index', compact('jurusan', 'kelas'));
     }
 
     public function anggotaStore(Request $req)
     {
         $id = $req->get('anggota_id');
         if ($id) {
-            $anggota = Anggota::findOrFail($id);
+            $anggota = User::findOrFail($id);
         } else {
-            $anggota = New Anggota;
+            $anggota = New User;
         }
-        $anggota->anggota_nama = $req->anggota_nama;
-        $anggota->anggota_tipe_id = $req->anggota_tipe;
+        $anggota->name = $req->name;
         $anggota->jurusan_id = $req->jurusan_nama;
         $anggota->kelas_id = $req->kelas_nama;
-        $anggota->posel = $req->posel;
+        $anggota->email = $req->email;
+        $anggota->role = $req->role;
         if ( $req->password === $req->password2 ) {
-            $anggota->katasandi = bcrypt($req->password);
+            $anggota->password = bcrypt($req->password);
             $anggota->save();
         }
 
@@ -52,23 +50,20 @@ class AnggotaController extends Controller
 
     public function anggotaUbah($id) 
     {
-        $anggota = Anggota::findOrFail($id);
-        $anggotaTipe = AnggotaTipe::all();
+        $anggota = User::find($id);
         $jurusan = Jurusan::all();
         $kelas = Kelas::all();
-    	return view('operator.datamaster.anggota.edit', compact('anggota', 'anggotaTipe', 'jurusan', 'kelas'));
+    	return view('operator.datamaster.anggota.edit', compact('anggota', 'jurusan', 'kelas'));
     }
 
 
     public function anggotaDatatable()
     {
 
-        $anggota = DB::table('anggota')
-        ->join('anggota_tipe', 'anggota.anggota_tipe_id', '=', 'anggota_tipe.anggota_tipe_id')
-        ->join('jurusan', 'anggota.jurusan_id', '=', 'jurusan.jurusan_id')
-        ->join('kelas', 'anggota.kelas_id', '=', 'kelas.kelas_id')
-        ->select('anggota.*',
-            'anggota_tipe.anggota_tipe_nama',
+        $anggota = DB::table('users')
+        ->join('jurusan', 'users.jurusan_id', '=', 'jurusan.jurusan_id')
+        ->join('kelas', 'users.kelas_id', '=', 'kelas.kelas_id')
+        ->select('users.*',
             'jurusan.jurusan_nama',
             'kelas.kelas_nama'
         )
@@ -82,7 +77,7 @@ class AnggotaController extends Controller
 
     public function anggotaDelete($id)
     {
-        $anggota = Anggota::where('anggota_id',$id)->delete();
+        $anggota = User::where('anggota_id',$id)->delete();
 
 		return redirect()->route('operator.anggota');
     }

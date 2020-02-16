@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use DB;
 use App\Model\Novel;
-use App\Model\DataMaster\Anggota;
+use App\Model\DataMaster\User;
 use Yajra\Datatables\Datatables;
 
 class NovelController extends Controller
@@ -31,9 +31,9 @@ class NovelController extends Controller
     public function createDatatable()
     {
         $novel = DB::table('novel')
-        ->join('anggota', 'novel.anggota_id', '=', 'anggota.anggota_id')
+        ->join('users', 'novel.anggota_id', '=', 'users.anggota_id')
         ->select('novel.*',
-            'anggota.anggota_nama',
+            'users.name',
         )
         ->get();
 
@@ -97,7 +97,7 @@ class NovelController extends Controller
     public function edit($id)
     {
         $novel = Novel::find($id);
-        $anggota = Anggota::all();
+        $anggota = User::all();
         return view('operator.novel.edit', compact('novel', 'anggota'));
     }
 

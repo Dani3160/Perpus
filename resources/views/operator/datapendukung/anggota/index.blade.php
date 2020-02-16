@@ -48,46 +48,11 @@
 		</div>
 		{{-- Bagian Akhir Tabel Kelas --}}
 
-		{{-- Tabel Anggota-Tipe --}}
-		<div class="col-md-6">
-			<h5 class="text-dark"><i class="fas fa-user"></i> Data Anggota Tipe</h5>
-			<div class="table table-responsive mt-3">
-				<table class="table table-bordered table-striped" id="anggotaTipe">
-					<thead>
-						<tr>
-							<th>No</th>
-							<th>Tipe Anggota</th>
-							<th>Opsi</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
-		</div>
-		{{-- Bagian Akhir Tabel Anggota-Tipe --}}
 	</div>
 </div>
 
 <div id="tambah" class="tabcontent">
 	<div class="row mt-4 mb-5">
-		<!-- Form Anggota-Tipe -->
-		<div class="col-md-6">
-			<div class="card shadow">
-				<div class="card-body">
-					<h5 class="text-dark"><i class="fas fa-user"></i> Form Anggota Tipe</h5>
-					<hr>
-					<form class="form-horizontal form-label-left input_mask" action="{{ route('operator.store.DataPendukung.tipe') }}" method="post">
-						@csrf
-						<div class="form-group">
-							<input type="text" class="form-control" name="anggota_tipe_nama" placeholder="Masukkan tipe anggota" required="">
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-success btn-sm float-right"><i class="fas fa-save"></i> Simpan</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<!-- Bagian Akhir Form Anggota-Tipe -->
 
 		<!-- Form Jurusan -->
 		<div class="col-md-6">
@@ -113,7 +78,7 @@
 		<!-- Bagian Akhir Form Jurusan -->
 
 		<!-- Form Kelas -->
-		<div class="col-md-6 mt-3">
+		<div class="col-md-6">
 			<div class="card shadow">
 				<div class="card-body">
 					<h5 class="text-dark"><i class="far fa-clone"></i> Form Kelas</h5>
@@ -168,24 +133,6 @@
 	// Get the element with id="defaultOpen" and click on it
 	document.getElementById("defaultOpen").click();
 </script>
-<!-- Tabel Tipe-Anggota -->
-	<script type="text/javascript">
-		$(function(){
-		$('#anggotaTipe').DataTable({
-			order: [[0, 'asc']],
-			processing: true,
-			responsive: true,
-			serverSide: true,
-			"bDestroy": true,
-			ajax: '{!! route('operator.pendukung.datatable.tipeAnggota') !!}',
-			columns: [
-			{data: 'DT_RowIndex', name: 'DT_RowIndex', width: '5px',},
-			{data: 'anggota_tipe_nama', name: 'anggota_tipe_nama', width: '50px', orderable: true},
-			{data: 'action', name: 'action', width: '100px', orderable: false, searchable: false,},
-			]
-		});
-	});
-	</script>
 
 <!-- Tabel Jurusan -->
 	<script type="text/javascript">

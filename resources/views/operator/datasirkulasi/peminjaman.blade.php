@@ -182,7 +182,7 @@ Peminjaman Buku
         return {
           results:  $.map(data, function (item) {
             return {
-              text: item.anggota_nama,
+              text: item.name,
               id: item.anggota_id
             }
           })
@@ -224,7 +224,7 @@ Peminjaman Buku
         return {
           results:  $.map(data, function (item) {
             return {
-              text: item.anggota_nama,
+              text: item.name,
               id: item.anggota_id
             }
           })
@@ -267,7 +267,7 @@ Peminjaman Buku
     ajax: '{!! route('operator.sirkulasi.riwayat.peminjaman') !!}',
     columns: [
     {data: 'DT_RowIndex', name: 'sirkulasi_id', width: '150px'},
-    {data: 'anggota_nama', name: 'anggota_nama', width: '140px'},
+    {data: 'name', name: 'name', width: '140px'},
     {data: 'judul', name: 'judul', },
     {data: 'eksemplar', name: 'eksemplar', },
     {data: 'mulai_pinjam', name: 'mulai_pinjam', },
@@ -290,7 +290,7 @@ Peminjaman Buku
     ajax: '{!! route('operator.sirkulasi.riwayat.pengembalian') !!}',
     columns: [
     {data: 'DT_RowIndex', name: 'sirkulasi_id', width: '5px'},
-    {data: 'anggota_nama', name: 'anggota_nama', width: '140px'},
+    {data: 'name', name: 'name', width: '140px'},
     {data: 'judul', name: 'judul', },
     {data: 'eksemplar', name: 'eksemplar', },
     {data: 'mulai_pinjam', name: 'mulai_pinjam', },

@@ -117,7 +117,7 @@ Resume - Operator
     ajax: '{!! route('operator.resume.datatable') !!}',
     columns: [
     {data: 'DT_RowIndex', name: 'resume_id', width: '150px'},
-    {data: 'anggota_nama', name: 'anggota_nama', width: '140px'},
+    {data: 'name', name: 'name', width: '140px'},
     {data: 'kelas_nama', name: 'kelas_nama', },
     {data: 'resume_judul', name: 'resume_judul', },
     {data: 'hari', name: 'hari', },
@@ -139,7 +139,7 @@ Resume - Operator
         return {
           results:  $.map(data, function (item) {
             return {
-              text: item.anggota_nama,
+              text: item.name,
               id: item.anggota_id
             }
           })

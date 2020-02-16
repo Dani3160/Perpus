@@ -11,6 +11,24 @@
 |
 */
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// User
+Route::prefix('user')->group(function(){
+	Route::get('/dashboard', 'User\UserController@index')->name('user.dashboard');
+
+	// Unggah Karya
+	Route::prefix('unggahkarya')->group(function(){
+		Route::get('/', 'User\UserController@unggahKarya')->name('user.unggah');
+		Route::get('/novel', 'User\UserController@formNovel')->name('user.unggah.novel');
+		Route::get('/cerpen', 'User\UserController@formCerpen')->name('user.unggah.cerpen');
+		Route::get('/puisi', 'User\UserController@formPuisi')->name('user.unggah.puisi');
+	});
+	
+});
+
 Route::get('/', function () {
     return view('user.landing');
 });
@@ -21,28 +39,9 @@ Route::get('/Masuk', 'Auth\LoginController@ShowMasukForm')->name('Masuk');
 Route::get('/Daftar', 'Auth\RegisterController@ShowDaftarForm')->name('Daftar');
 Route::post('/Daftar-Akun', 'Auth\RegisterController@Register')->name('post-daftar');
 Route::post('/Masuk-Akun', 'Auth\LoginController@Login')->name('post-masuk');
-Route::get('/Keluar', 'Auth\LoginController@Keluar')->name('Keluar');
 
 Route::get('/jurusan', 'Auth\LoginController@getJurusan')->name('Jurusan');
 
-//Email
-Route::get('/email', function () {
-    return view('layouts.email.send_email');
-});
-Route::post('/sendEmail', 'Auth\EmailController@sendEmail');
-
-//lupa sandi
-Route::get('/lupa-sandi', 'Auth\ForgotPasswordController@showForm')->name('konfirmasi_kode_lupasandi');
-Route::post('/lupa-sandi/kirim-kode', 'Auth\ForgotPasswordController@sandibaru')->name('sandibaru');
-
-//verifikasi
-Route::get('/verifikasi', 'Auth\VerificationController@showverifikasi')->name('verifikasi');
-Route::post('/verifikasi/kirim-kode', 'Auth\VerificationController@kirimverifikasi')->name('kirim-kode-verifi');
-Route::get('/verifikasi/konfirmasi', 'Auth\VerificationController@konfirmasishowverifikasi')->name('konfirmasi-show-kode-verifi');
-Route::post('/verifikasi/konfirmasi-kode', 'Auth\VerificationController@konfirmasiverifikasi')->name('konfirmasi-kode-verifi');
-
-// Logout
-Route::get('/logout', 'Auth\LoginController@Keluar')->name('logout');
 
 // Operator
 Route::prefix('operator')->group(function(){
@@ -206,6 +205,28 @@ Route::prefix('operator')->group(function(){
 		Route::delete('/hapus/{id}', 'Operator\NovelController@destroy')->name('operator.novel.hapus');
 	});
 
+	// Cerpen
+	Route::prefix('cerpen')->group(function(){
+		// Data Cerpen
+		Route::get('/', 'Operator\CerpenController@index')->name('operator.cerpen');
+		Route::get('/datatable', 'Operator\CerpenController@createDatatable')->name('operator.cerpen.datatable');
+		Route::post('/update', 'Operator\CerpenController@store')->name('operator.cerpen.store');
+		Route::get('/detail/{id}', 'Operator\CerpenController@edit')->name('operator.cerpen.edit');
+		Route::post('/konfirmasi/{id}', 'Operator\CerpenController@konfirmasi')->name('operator.cerpen.konfirmasi');
+		Route::delete('/hapus/{id}', 'Operator\CerpenController@destroy')->name('operator.cerpen.hapus');
+	});
+
+	// Cerpen
+	Route::prefix('puisi')->group(function(){
+		// Data Puisi
+		Route::get('/', 'Operator\PuisiController@index')->name('operator.puisi');
+		Route::get('/datatable', 'Operator\PuisiController@createDatatable')->name('operator.puisi.datatable');
+		Route::post('/update', 'Operator\PuisiController@store')->name('operator.puisi.store');
+		Route::get('/detail/{id}', 'Operator\PuisiController@edit')->name('operator.puisi.edit');
+		Route::post('/konfirmasi/{id}', 'Operator\PuisiController@konfirmasi')->name('operator.puisi.konfirmasi');
+		Route::delete('/hapus/{id}', 'Operator\PuisiController@destroy')->name('operator.puisi.hapus');
+	});
+
 	// Resume
 	Route::prefix('resume')->group(function(){
 		// Data Resume
@@ -218,17 +239,6 @@ Route::prefix('operator')->group(function(){
 
 });
 
-// User
-Route::prefix('user')->group(function(){
-	Route::get('/dashboard', 'User\UserController@index')->name('user.dashboard');
 
-	// Unggah Karya
-	Route::prefix('unggahkarya')->group(function(){
-		Route::get('/', 'User\UserController@unggahKarya')->name('user.unggah');
-		Route::get('/novel', 'User\UserController@formNovel')->name('user.unggah.novel');
-		Route::get('/cerpen', 'User\UserController@formCerpen')->name('user.unggah.cerpen');
-		Route::get('/puisi', 'User\UserController@formPuisi')->name('user.unggah.puisi');
-	});
-	
-});
+
 

@@ -16,7 +16,7 @@
 		<tbody>
 			<tr>
 				<td><label for="nama">Nama</label></td>
-				<td><input type="text" name="anggota_nama" id="nama" value="{{ $anggota->anggota_nama }}"></td>
+				<td><input type="text" name="email" id="nama" value="{{ $anggota->email }}"></td>
 			</tr>
 
 			<tr>

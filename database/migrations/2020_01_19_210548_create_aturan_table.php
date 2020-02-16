@@ -20,8 +20,6 @@ class CreateAturanTable extends Migration
             $table->string('kali_pinjam', 100)->nullable();
             $table->string('denda', 100)->nullable();
             $table->string('toleransi', 100)->nullable();
-            $table->unsignedBigInteger('anggota_tipe_id')->nullable();
-            $table->foreign('anggota_tipe_id')->references('anggota_tipe_id')->on('anggota_tipe')->onDelete('cascade');
             $table->timestamp('pembuatan')->nullable();
             $table->timestamp('perubahan')->nullable();
         });

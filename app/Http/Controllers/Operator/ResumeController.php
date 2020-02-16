@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 
 use DB;
 use App\Model\Resume;
-use App\Model\DataPendukung\AnggotaTipe;
 use App\Model\DataPendukung\Kelas;
-use App\Model\DataMaster\Anggota;
+use App\Model\DataMaster\User;
 use Yajra\Datatables\Datatables;
 
 class ResumeController extends Controller
@@ -34,10 +33,10 @@ class ResumeController extends Controller
     public function createDatatable()
     {
         $resume = DB::table('resume')
-        ->join('anggota', 'resume.anggota_id', '=', 'anggota.anggota_id')
+        ->join('users', 'resume.anggota_id', '=', 'users.anggota_id')
         ->join('kelas', 'resume.kelas_id', '=', 'kelas.kelas_id')
         ->select('resume.*',
-            'anggota.anggota_nama',
+            'users.name',
             'kelas.kelas_nama',
         )
         ->get();
@@ -93,8 +92,7 @@ class ResumeController extends Controller
     {
         $resume = Resume::find($id);
         $kelas = Kelas::all();
-        $at = AnggotaTipe::where('anggota_tipe_nama', '=', 'Siswa', 'AND', 'Guru',)->first();
-        $anggota = Anggota::all();
+        $anggota = User::all();
         return view('operator.resume.edit', compact('anggota' ,'resume', 'kelas'));
     }
 

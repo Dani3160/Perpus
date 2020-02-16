@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Operator\Pengaturan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\DataMaster\Anggota;
+use App\Model\DataMaster\User;
 use Image;
 
 class ProfileController extends Controller
@@ -12,7 +12,7 @@ class ProfileController extends Controller
 
    public function profile($id)
    {
-   	  $anggota = Anggota::find($id);
+   	  $anggota = User::find($id);
    	  return view('operator.pengaturan.profile.index', compact('anggota'));
    }
 
@@ -20,7 +20,7 @@ class ProfileController extends Controller
 
    public function profileUpdate(Request $request, $id)
    {
-       $anggota = Anggota::find($id);
+       $anggota = User::find($id);
        
        if ( $request->hasFile('foto') ) {
          $foto = $request->file('foto');
@@ -47,7 +47,7 @@ class ProfileController extends Controller
 
    public function fotoEdit($id)
    {
-      $anggota = Anggota::find($id);
+      $anggota = User::find($id);
       return view('operator.pengaturan.profile.editFoto', compact('anggota'));
    }
 
@@ -59,7 +59,7 @@ class ProfileController extends Controller
          $fillename = time() . '.' . $foto->getClientOriginalExtension();
          Image::make($foto)->save(public_path('/operator/images/profile/' . $fillename));
 
-         $anggota = Anggota::find($id);
+         $anggota = User::find($id);
          $anggota->foto = $fillename;
          $anggota->save();
       }

@@ -30,7 +30,7 @@
 							<div class="text-center">
 								<h1 class="h4 text-gray-900 mb-4">NURISPERPUS</h1>
 							</div>
-							<form class="user" action="{{route('post-masuk')}}" method="post">
+							<form class="user" action="{{route('login')}}" method="post">
 								@csrf
 								<div class="form-group">
 									<input type="email" name="posel" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" autocomplete="off">

@@ -182,12 +182,16 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#novelMaster" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-user"></i>
-          <span>Pengaturan Novel</span>
+          <span>Pengaturan Karya</span>
         </a>
         <div id="novelMaster" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Novel Master:</h6>
             <a class="collapse-item" href="{{route('operator.novel')}}">Data Novel</a>
+            <h6 class="collapse-header">Cerpen Master:</h6>
+            <a class="collapse-item" href="{{route('operator.cerpen')}}">Data Cerpen</a>
+            <h6 class="collapse-header">Puisi Master:</h6>
+            <a class="collapse-item" href="{{route('operator.puisi')}}">Data Puisi</a>
           </div>
         </div>
       </li>

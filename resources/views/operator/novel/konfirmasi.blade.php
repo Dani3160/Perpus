@@ -1,5 +1,3 @@
-
-
 <?php
 $wk = DB::table('novel')->first();
 

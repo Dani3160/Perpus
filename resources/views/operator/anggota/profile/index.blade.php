@@ -15,7 +15,7 @@
 		<tbody>
 			<tr>
 				<td>Nama : </td>
-				<td>{{$anggota->anggota_nama}}</td>
+				<td>{{$anggota->name}}</td>
 			</tr>
 
 			<tr>

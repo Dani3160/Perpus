@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Operator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Model\DataMaster\Anggota;
+use App\Model\DataMaster\User;
 use App\Model\DataMaster\Biblio;
 use DB;
 
@@ -14,7 +14,7 @@ class OperatorController extends Controller
     public function index()
     {
         // Angota
-        $anggota = Anggota::count();
+        $anggota = User::count();
         // Buku
         $biblio = Biblio::count();
         // Buku Dipinjam
