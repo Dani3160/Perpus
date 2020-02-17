@@ -78,7 +78,7 @@
                         <a class="nav-link page-scroll" href="#contact">Berita</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="{{route('Masuk')}}">Login</a>
+                        <a class="nav-link" href="{{route('Masuk')}}">Login</a>
                     </li>
 
                 </ul>

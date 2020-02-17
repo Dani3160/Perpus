@@ -518,14 +518,14 @@ select.form-control.has-value{
     opacity: 1;
 }
 .bg-transparent.affix{
-    background-image: linear-gradient(to right, rgba(32, 40, 119, 1), rgba(55, 46, 149, 1), rgba(83, 49, 177, 1), rgba(114, 48, 205, 1), rgba(150, 41, 230, 1)) !important;
+    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
 }
 .navbar{
     transition: all .3s ease-in-out;
 }
 @media (min-width: 320px) and (max-width: 992px){
     .navbar{
-        background: #202877 !important;
+        background: #224abe !important;
         padding: .95rem 1rem;
     }
 
@@ -1313,7 +1313,7 @@ select.form-control.has-value{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-image: linear-gradient(to right, rgba(32, 40, 119, 0.64), rgba(55, 46, 149, 0.65), rgba(83, 49, 177, 0.72), rgba(114, 48, 205, 0.62), rgba(150, 41, 230, 0.6));
+    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
 }
 
 
@@ -1812,7 +1812,7 @@ select.form-control.has-value{
 .background-img:before{
     position: absolute;
     content: '';
-    background-image: linear-gradient(to right, rgba(32, 40, 119, 0.95), rgba(55, 46, 149, 0.95), rgba(83, 49, 177, 0.90), rgba(114, 48, 205, 0.85), rgba(150, 41, 230, 0.95));
+    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
     width: 100%;
     height: 100%;
     top: 0;
@@ -2295,7 +2295,7 @@ select.form-control.has-value{
 
 /*our team css*/
 .single-team-member .team-info {
-    background-image: linear-gradient(to right, rgba(32, 40, 119, 0.85), rgba(55, 46, 149, 0.9), rgba(83, 49, 177, 0.85), rgba(114, 48, 205, 0.8), rgba(150, 41, 230, 0.8));
+    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
     opacity: 0;
     visibility: hidden;
     -webkit-transition: opacity 0.3s, visibility 0.3s;

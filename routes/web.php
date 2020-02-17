@@ -29,6 +29,14 @@ Route::prefix('user')->group(function(){
 		Route::get('/cerpen', 'User\UserController@formCerpen')->name('user.unggah.cerpen');
 		Route::get('/puisi', 'User\UserController@formPuisi')->name('user.unggah.puisi');
 	});
+
+	// Lihat Karya
+	Route::prefix('lihatkarya')->group(function(){
+		Route::get('/', 'User\UserController@getKarya')->name('user.lihat.karya');
+		Route::get('/cerpen', 'User\UserController@getCerpen')->name('user.lihat.cerpen');
+		Route::get('/novel', 'User\UserController@getNovel')->name('user.lihat.novel');
+		Route::get('/puisi', 'User\UserController@getPuisi')->name('user.lihat.puisi');
+	});
 	
 });
 

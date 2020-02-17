@@ -50,7 +50,7 @@ class SirkulasiController extends Controller
         $sirkulasi->mulai_pinjam = $mytime;
         $aID = $sirkulasi->anggota_id;
         $anggota = User::find($aID);
-        // $aturan = DB::table('aturan')->where('anggota_tipe_id', '=', $anggota->anggota_tipe_id)->get()->first();
+        $aturan = Aturan::where('role', '=', 'Siswa')->first();
         $sirkulasi->aturan_id = $aturan->aturan_id;
         $sirkulasi->mulai_pinjam = $request->mulai_pinjam;
         $tgl = date('d', strtotime($sirkulasi->mulai_pinjam));
@@ -181,8 +181,8 @@ class SirkulasiController extends Controller
         $sirkulasi->kembali_pinjam = $mytime;
         $sirkulasi->kembali_pinjam = $request->kembali_pinjam;
         $aID = $sirkulasi->anggota_id;
-        $anggota = Anggota::find($aID);
-        // $aturan = DB::table('aturan')->where('anggota_tipe_id', '=', $anggota->anggota_tipe_id)->get()->first();
+        $anggota = User::find($aID);
+        $aturan = Aturan::where('role', '=', 'Siswa')->first();
         $sirkulasi->aturan_id = $aturan->aturan_id;
         
         $tgl = date('d', strtotime($sirkulasi->kembali_pinjam));
