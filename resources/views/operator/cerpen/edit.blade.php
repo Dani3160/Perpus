@@ -32,7 +32,7 @@ Konfirmasi Cerpen - Operator
 								<label for="anggota_id">Postingan*</label>
 								<select name="anggota_id" id="" class="custom-select">
                                     @foreach($anggota as $value => $data)
-                                        @if($cerpen->anggota_id == $data->anggota_id)
+                                        @if($cerpen->anggota_id == $data->id)
                                         <option value="{{$data->anggota_id}}" selected readonly>{{$data->name}}</option>
                                         @endif
                                     @endforeach

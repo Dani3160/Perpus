@@ -22,7 +22,7 @@ class PuisiController extends Controller
     public function createDatatable()
     {
         $puisi = DB::table('puisi')
-        ->join('users', 'puisi.anggota_id', '=', 'users.anggota_id')
+        ->join('users', 'puisi.anggota_id', '=', 'users.id')
         ->select('puisi.*',
             'users.name',
         )

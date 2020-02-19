@@ -115,7 +115,7 @@ Anggota - Operator
 			"bDestroy": true,
 			ajax: '{!! route('operator.anggota.datatables') !!}',
 			columns: [
-			{data: 'DT_RowIndex', name: 'anggota_id', width: '5px',},
+			{data: 'DT_RowIndex', name: 'id', width: '5px',},
 			{data: 'name', name: 'name', width: '50px', orderable: true},
 			{data: 'jurusan_nama', name: 'jurusan_nama', width: '30px', orderable: true},
 			{data: 'kelas_nama', name: 'kelas_nama', width: '30px', orderable: true},

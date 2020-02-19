@@ -104,7 +104,7 @@ class SirkulasiController extends Controller
     {
         if ($request->has('q')) {
             $cari = $request->q;
-            $data = DB::table('users')->select('anggota_id', 'name')->where('role', '=', 'Siswa', 'AND', 'name', 'LIKE', '%'.$cari.'%')->get();
+            $data = DB::table('users')->select('id', 'name')->where('role', '=', 'Siswa', 'AND', 'name', 'LIKE', '%'.$cari.'%')->get();
             return response()->json($data);
         }
     }
@@ -136,10 +136,10 @@ class SirkulasiController extends Controller
     public function perpanjangan($id)
     {
         $perpanjangan = DB::table('sirkulasi')
-        ->join('users', 'sirkulasi.anggota_id', '=', 'users.anggota_id')
+        ->join('users', 'sirkulasi.anggota_id', '=', 'users.id')
         ->join('biblio', 'sirkulasi.biblio_id', '=', 'biblio.biblio_id')
         ->join('status_sirkulasi', 'sirkulasi.status_sirkulasi_id', '=', 'status_sirkulasi.status_sirkulasi_id')
-        ->select('sirkulasi.*', 'users.name', 'biblio.judul', 'biblio.eksemplar', 'status_sirkulasi.status_sirkulasi_nama')
+        ->select('sirkulasi.*', 'users.name', 'users.id','biblio.judul', 'biblio.eksemplar', 'status_sirkulasi.status_sirkulasi_nama')
         ->where('sirkulasi_id', '=', $id)
         ->get()->first();
         
@@ -241,7 +241,7 @@ class SirkulasiController extends Controller
         $status = DB::table('status_sirkulasi')->where('status_sirkulasi_nama', '=', 'Peminjaman')->get()->first();
         
         $peminjaman = DB::table('sirkulasi')
-        ->join('users', 'sirkulasi.anggota_id', '=', 'users.anggota_id')
+        ->join('users', 'sirkulasi.anggota_id', '=', 'users.id')
         ->join('biblio', 'sirkulasi.biblio_id', '=', 'biblio.biblio_id')
         ->select('sirkulasi.*', 'sirkulasi.sirkulasi_id', 'users.name', 'biblio.judul', 'biblio.eksemplar')
         ->where('status_sirkulasi_id', '=', $status->status_sirkulasi_id)
@@ -263,7 +263,7 @@ class SirkulasiController extends Controller
     {
         $status = DB::table('status_sirkulasi')->where('status_sirkulasi_nama', '=', 'Pengembalian')->get()->first();
         $pengembalian = DB::table('sirkulasi')
-        ->join('users', 'sirkulasi.anggota_id', '=', 'users.anggota_id')
+        ->join('users', 'sirkulasi.anggota_id', '=', 'users.id')
         ->join('biblio', 'sirkulasi.biblio_id', '=', 'biblio.biblio_id')
         ->join('aturan', 'sirkulasi.aturan_id', '=', 'aturan.aturan_id')
         ->select('sirkulasi.*', 'users.name', 'biblio.judul', 'biblio.eksemplar', 'aturan.denda')
@@ -286,7 +286,7 @@ class SirkulasiController extends Controller
     {
         $status = DB::table('status_sirkulasi')->where('status_sirkulasi_nama', '=', 'Konfirmasi')->get()->first();
         $konfirmasi = DB::table('sirkulasi')
-        ->join('users', 'sirkulasi.anggota_id', '=', 'users.anggota_id')
+        ->join('users', 'sirkulasi.anggota_id', '=', 'users.id')
         ->join('biblio', 'sirkulasi.biblio_id', '=', 'biblio.biblio_id')
         ->select('sirkulasi.*', 'users.name', 'biblio.judul', 'biblio.edisi', 'biblio.penerbit_tahun', 'biblio.eksemplar')
         ->where('status_sirkulasi_id', '=', $status->status_sirkulasi_id)
@@ -303,7 +303,7 @@ class SirkulasiController extends Controller
     public function konfirmasiGet($id)
     {
         $konfirmasi = DB::table('sirkulasi')
-        ->join('users', 'sirkulasi.anggota_id', '=', 'users.anggota_id')
+        ->join('users', 'sirkulasi.anggota_id', '=', 'users.id')
         ->join('biblio', 'sirkulasi.biblio_id', '=', 'biblio.biblio_id')
         ->select('sirkulasi.*', 'users.name', 'biblio.judul', 'biblio.edisi', 'biblio.penerbit_tahun', 'biblio.eksemplar')
         ->where('sirkulasi_id', '=', $id)

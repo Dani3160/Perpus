@@ -25,7 +25,7 @@
     <title>NURISPERPUS</title>
 
     <!--favicon icon-->
-    <link rel="icon" href="{{asset('landing/img/favicon.png')}}" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{asset('image/logo/logo.png')}}" type="image/png" sizes="16x16">
 
     <!--google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700%7COpen+Sans&amp;display=swap"
@@ -119,7 +119,7 @@
     <!--hero section end-->
 
     <!--promo section start-->
-    <section class="promo-section ptb-100">
+    <section id="about" class="promo-section ptb-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-7 col-md-8">
@@ -164,7 +164,7 @@
     <!--overflow block start-->
     <div class="overflow-hidden">
         <!--our pricing packages section start-->
-        <section id="pricing" class="package-section background-shape-right ptb-100">
+        <section id="features" class="package-section background-shape-right ptb-100">
             <div class="container">
                 <h5 class="text-center">Fitur Aplikasi</h5>
                 <!--pricing faq start-->

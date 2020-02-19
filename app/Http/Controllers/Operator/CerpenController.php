@@ -22,7 +22,7 @@ class CerpenController extends Controller
     public function createDatatable()
     {
         $cerpen = DB::table('cerpen')
-        ->join('users', 'cerpen.anggota_id', '=', 'users.anggota_id')
+        ->join('users', 'cerpen.anggota_id', '=', 'users.id')
         ->select('cerpen.*',
             'users.name',
         )

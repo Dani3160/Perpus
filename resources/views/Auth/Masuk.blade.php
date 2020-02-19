@@ -30,7 +30,7 @@
 							<div class="text-center">
 								<h1 class="h4 text-gray-900 mb-4">NURISPERPUS</h1>
 							</div>
-							<form class="user" action="{{route('login')}}" method="post">
+							<form class="user" action="/Masuk-Akun" method="post">
 								@csrf
 								<div class="form-group">
 									<input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" autocomplete="off">
@@ -44,7 +44,7 @@
 										<label class="custom-control-label" for="customCheck">Remember Me</label>
 									</div>
 								</div>
-								<button class="btn btn-primary btn-user btn-block">
+								<button type="submit" class="btn btn-primary btn-user btn-block">
 									Login
 								</button>
 							</form>

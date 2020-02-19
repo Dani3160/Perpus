@@ -31,7 +31,7 @@ class NovelController extends Controller
     public function createDatatable()
     {
         $novel = DB::table('novel')
-        ->join('users', 'novel.anggota_id', '=', 'users.anggota_id')
+        ->join('users', 'novel.anggota_id', '=', 'users.id')
         ->select('novel.*',
             'users.name',
         )

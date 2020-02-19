@@ -92,9 +92,6 @@ class RegisterController extends Controller
 
             'name' => 'required|min:2|max:30',
             'email' => 'required|min:4|unique:users,email',
-            'telepon' => 'required|min:11|max:13',
-            'jurusan_id' => 'required',
-            'kelas_id' => 'required',
             'password' => 'required|confirmed',
 
         ], $message);
@@ -102,15 +99,10 @@ class RegisterController extends Controller
         $r = new User;
         $r->name = $req->name;
         $r->email = $req->email;
-        $r->telepon = $req->telepon;
         $r->role = 'Siswa';
-        $jurusan = DB::table('jurusan')->where('jurusan_nama', '=', 'Tidak Ada')->first();
-        $r->jurusan_id = $jurusan->jurusan_id;
-        $kelas = DB::table('kelas')->where('kelas_nama', '=', 'Tidak Ada')->first();
-        $r->kelas_id = $kelas->kelas_id;
         $r->password = bcrypt($req->password);
         $r->status_anggota = 0;
         $r->save();
-        return redirect()->back();
+        return redirect()->route('user.dashboard');
     }
 }

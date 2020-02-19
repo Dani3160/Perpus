@@ -525,7 +525,7 @@ select.form-control.has-value{
 }
 @media (min-width: 320px) and (max-width: 992px){
     .navbar{
-        background: #224abe !important;
+        background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%) !important;
         padding: .95rem 1rem;
     }
 

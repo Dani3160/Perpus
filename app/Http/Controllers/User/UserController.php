@@ -5,15 +5,15 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 
 class UserController extends Controller
 {
     
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    //     $this->middleware('IsUser');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -136,6 +136,36 @@ class UserController extends Controller
     public function lihatBuku()
     {
         // Hallo
+    }
+
+    // Resume Literasi
+    public function literasi()
+    {
+        $user = DB::table('users')->where('id', '=', Auth::user()->id)->first();
+        $resume = DB::table('resume')
+                    ->where('anggota_id', '=', $user->id)
+                    ->join('users', 'resume.anggota_id', 'users.id')
+                    ->select('resume.*', 'users.name')
+                    ->paginate(5);
+        return view('user.literasi.index', compact('resume'));
+    }
+
+    public function formLiterasi()
+    {
+        return view('user.literasi.form');
+    }
+
+    public function postLiterasi(Request $req)
+    {
+        $resume = new Resume;
+        $resume->anggota_id = $req->anggota_id;
+        $resume->kelas_id = $req->kelas_id;
+        $resume->hari = $req->hari;
+        $resume->tanggal_resume = $req->tanggal_resume;
+        $resume->resume_judul = $req->resume_judul;
+        $resume->resume_isi = $req->resume_isi;
+        $resume->save();
+        return redirect()->back();
     }
     
 }

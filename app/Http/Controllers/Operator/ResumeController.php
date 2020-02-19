@@ -33,7 +33,7 @@ class ResumeController extends Controller
     public function createDatatable()
     {
         $resume = DB::table('resume')
-        ->join('users', 'resume.anggota_id', '=', 'users.anggota_id')
+        ->join('users', 'resume.anggota_id', '=', 'users.id')
         ->join('kelas', 'resume.kelas_id', '=', 'kelas.kelas_id')
         ->select('resume.*',
             'users.name',

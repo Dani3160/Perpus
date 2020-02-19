@@ -26,7 +26,7 @@ class AnggotaController extends Controller
 
     public function anggotaStore(Request $req)
     {
-        $id = $req->get('anggota_id');
+        $id = $req->get('id');
         if ($id) {
             $anggota = User::findOrFail($id);
         } else {
@@ -77,7 +77,7 @@ class AnggotaController extends Controller
 
     public function anggotaDelete($id)
     {
-        $anggota = User::where('anggota_id',$id)->delete();
+        $anggota = User::where('id',$id)->delete();
 
 		return redirect()->route('operator.anggota');
     }

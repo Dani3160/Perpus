@@ -183,7 +183,7 @@ Peminjaman Buku
           results:  $.map(data, function (item) {
             return {
               text: item.name,
-              id: item.anggota_id
+              id: item.id
             }
           })
         };
@@ -225,7 +225,7 @@ Peminjaman Buku
           results:  $.map(data, function (item) {
             return {
               text: item.name,
-              id: item.anggota_id
+              id: item.id
             }
           })
         };

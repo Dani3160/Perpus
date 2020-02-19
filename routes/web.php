@@ -37,6 +37,12 @@ Route::prefix('user')->group(function(){
 		Route::get('/novel', 'User\UserController@getNovel')->name('user.lihat.novel');
 		Route::get('/puisi', 'User\UserController@getPuisi')->name('user.lihat.puisi');
 	});
+
+	Route::prefix('literasi')->group(function(){
+		Route::get('/', 'User\UserController@literasi')->name('user.literasi');
+		Route::get('/form', 'User\UserController@formLiterasi')->name('user.formliterasi');
+		Route::post('/form/post', 'User\UserController@postLiterasi')->name('user.post.literasi');
+	});
 	
 });
 

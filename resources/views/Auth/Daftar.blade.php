@@ -16,23 +16,15 @@
 						</div>
 						<form action="{{route('post-daftar')}}" method="POST" class="user">
 						@csrf
-							<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
+							<div class="form-group">
+							
 								<input type="text" name="name" class="form-control @error('name') is-invalid @enderror form-control-user" id="exampleFirstName" placeholder="Masukan Nama" autocomplete="off">
 								@error('name')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>
 								@enderror
-							</div>
-							<div class="col-sm-6">
-								<input type="text" name="telepon" class="form-control @error('telepon') is-invalid @enderror form-control-user" id="exampleLastName" placeholder="Telepon / HP" autocomplete="off">
-								@error('telepon')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
+							
 							</div>
 							<div class="form-group">
 								<input type="email" name="email" class="form-control @error('email') is-invalid @enderror form-control-user" id="exampleInputEmail" placeholder="Email" autocomplete="off">

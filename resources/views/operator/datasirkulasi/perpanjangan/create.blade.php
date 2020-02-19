@@ -18,7 +18,7 @@
                                 <div class="col-md-6 form-group">
                                     <label>Masukkan Nama Anggota</label>
                                     <select class="form-control" name="anggota_id" readonly> 
-                                        <option value="{{$perpanjangan->anggota_id}}">{{$perpanjangan->anggota_nama}}</option>
+                                        <option value="{{$perpanjangan->id}}">{{$perpanjangan->name}}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 form-group">
