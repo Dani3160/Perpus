@@ -75,7 +75,7 @@
                         <a class="nav-link page-scroll" href="#team">Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#contact">Berita</a>
+                        <a class="nav-link page-scroll" href="#blog">Berita</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('Masuk')}}">Login</a>
@@ -135,7 +135,7 @@
                 <div class="col-md-4 col-lg-4">
                     <div class="single-promo single-promo-hover single-promo-1 rounded text-center white-bg p-5 h-100">
                         <div class="circle-icon mb-5">
-                            <span class="ti-vector text-white"></span>
+                            <span class="ti-book text-white"></span>
                         </div>
                         <h5>Lihat Buku</h5>
                     </div>
@@ -143,7 +143,7 @@
                 <div class="col-md-4 col-lg-4">
                     <div class="single-promo single-promo-hover single-promo-1 rounded text-center white-bg p-5 h-100">
                         <div class="circle-icon mb-5">
-                            <span class="ti-lock text-white"></span>
+                            <span class="ti-upload text-white"></span>
                         </div>
                         <h5>Unggah Karya</h5>
                     </div>
@@ -151,7 +151,7 @@
                 <div class="col-md-4 col-lg-4">
                     <div class="single-promo single-promo-hover single-promo-1 rounded text-center white-bg p-5 h-100">
                         <div class="circle-icon mb-5">
-                            <span class="ti-eye text-white"></span>
+                            <span class="ti-pencil text-white"></span>
                         </div>
                         <h5>Resume Literasi</h5>
                     </div>

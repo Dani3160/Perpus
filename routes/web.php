@@ -16,43 +16,70 @@ Auth::routes();
 Route::get('/', function(){
 	return view('landing');
 });
-Route::get('/home', 'HomeController@index')->name('home');
 
-// User
-Route::prefix('user')->group(function(){
-	Route::get('/dashboard', 'User\UserController@index')->name('user.dashboard');
-
-	// Unggah Karya
-	Route::prefix('unggahkarya')->group(function(){
-		Route::get('/', 'User\UserController@unggahKarya')->name('user.unggah');
-		Route::get('/novel', 'User\UserController@formNovel')->name('user.unggah.novel');
-		Route::get('/cerpen', 'User\UserController@formCerpen')->name('user.unggah.cerpen');
-		Route::get('/puisi', 'User\UserController@formPuisi')->name('user.unggah.puisi');
-	});
-
-	// Lihat Karya
-	Route::prefix('lihatkarya')->group(function(){
-		Route::get('/', 'User\UserController@getKarya')->name('user.lihat.karya');
-		Route::get('/cerpen', 'User\UserController@getCerpen')->name('user.lihat.cerpen');
-		Route::get('/novel', 'User\UserController@getNovel')->name('user.lihat.novel');
-		Route::get('/puisi', 'User\UserController@getPuisi')->name('user.lihat.puisi');
-	});
-
-	Route::prefix('literasi')->group(function(){
-		Route::get('/', 'User\UserController@literasi')->name('user.literasi');
-		Route::get('/form', 'User\UserController@formLiterasi')->name('user.formliterasi');
-		Route::post('/form/post', 'User\UserController@postLiterasi')->name('user.post.literasi');
-	});
-	
-});
 
 //Auth
 Route::get('/Masuk', 'Auth\LoginController@ShowMasukForm')->name('Masuk');
 Route::get('/Daftar', 'Auth\RegisterController@ShowDaftarForm')->name('Daftar');
 Route::post('/Daftar-Akun', 'Auth\RegisterController@Register')->name('post-daftar');
 Route::post('/Masuk-Akun', 'Auth\LoginController@Login')->name('post-masuk');
+// Akhir Auth
 
-Route::get('/jurusan', 'Auth\LoginController@getJurusan')->name('Jurusan');
+Route::get('/home', 'HomeController@index')->name('home');
+
+// User
+Route::prefix('user')->group(function(){
+	Route::get('/dashboard', 'User\UserController@index')->name('user.dashboard');
+	
+	// Profile
+	Route::prefix('profile')->group(function(){
+		Route::get('/', 'User\UserController@profile')->name('user.profile');
+		Route::post('/post', 'User\UserController@profilePost')->name('user.profile.post');
+	});
+	// Akhir profile
+	
+	// Unggah Karya
+	Route::prefix('unggahkarya')->group(function(){
+		Route::get('/', 'User\UserController@unggahKarya')->name('user.unggah');
+		Route::post('/cerpen', 'User\UserController@cerpenPost')->name('user.unggah.cerpen');
+		Route::post('/novel', 'User\UserController@novelPost')->name('user.unggah.novel');
+		Route::post('/puisi', 'User\UserController@puisiPost')->name('user.unggah.puisi');
+	});
+	// Akhir Unggah Karya
+
+	// Lihat Karya
+	Route::prefix('lihatkarya')->group(function(){
+		Route::get('/', 'User\UserController@getKarya')->name('user.lihat.karya');
+		
+		Route::get('/cerpen', 'User\UserController@getCerpen')->name('user.lihat.cerpen');
+		Route::get('/cerpen/{id}', 'User\UserController@bacaCerpen')->name('user.baca.cerpen');
+
+		Route::get('/novel', 'User\UserController@getNovel')->name('user.lihat.novel');
+		Route::get('/novel/{id}', 'User\UserController@bacaNovel')->name('user.baca.novel');
+
+		Route::get('/puisi', 'User\UserController@getPuisi')->name('user.lihat.puisi');
+		Route::get('/puisi/{id}', 'User\UserController@bacaPuisi')->name('user.baca.puisi');
+	});
+	// Akhir Lihat Karya
+
+	// Resume Literasi
+	Route::prefix('literasi')->group(function(){
+		Route::get('/', 'User\UserController@literasi')->name('user.literasi');
+		Route::get('/detail/{id}', 'User\UserController@detailLiterasi')->name('user.detail.literasi');
+		Route::get('/form', 'User\UserController@formLiterasi')->name('user.formliterasi');
+		Route::post('/form/post', 'User\UserController@postLiterasi')->name('user.post.literasi');
+	});
+	// Akhir Resume Literasi
+	
+	// Lihat Buku
+	Route::prefix('buku')->group(function(){
+		Route::get('/', 'User\UserController@lihatBuku')->name('user.klasifikasi.buku');
+		Route::get('/klasifikasi', 'User\UserController@getBuku')->name('user.buku');
+	});
+	// Akhir lihat buku
+});
+
+// Akhir User
 
 
 // Operator
@@ -250,7 +277,7 @@ Route::prefix('operator')->group(function(){
 	});
 
 });
-
+// Akhir Operator
 
 
 

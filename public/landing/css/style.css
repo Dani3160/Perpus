@@ -190,16 +190,16 @@ strong, b{
     background: #f4f7fa;
 }
 .primary-bg{
-    background: #6730e3;
+    background: #4D72DE;
 }
 .secondary-bg{
-    background: #9629e6;
+    background: #309FE6;
 }
 .color-primary{
-    color: #6730e3;
+    color: #4D72DE;
 }
 .color-secondary{
-    color: #9629e6
+    color: #309FE6;
 }
 .white-bg{
     background: #ffffff;
@@ -518,14 +518,14 @@ select.form-control.has-value{
     opacity: 1;
 }
 .bg-transparent.affix{
-    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+    background-image:linear-gradient(180deg,#4e73df 10%,#17c0eb 100%);
 }
 .navbar{
     transition: all .3s ease-in-out;
 }
 @media (min-width: 320px) and (max-width: 992px){
     .navbar{
-        background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%) !important;
+        background: #4e73df !important;
         padding: .95rem 1rem;
     }
 
@@ -1366,7 +1366,7 @@ select.form-control.has-value{
     border-radius: 1rem;
 }
 .card.single-promo-card:hover{
-    background: #6730e3;
+    background: #309fe6;
     color: #ffffff;
 }
 .card.single-promo-card:hover  span, .card.single-promo-card:hover h5, .card.single-promo-card:hover p.text-muted{
@@ -1655,7 +1655,7 @@ select.form-control.has-value{
 .icon-box{
     height: 65px;
     width: 65px;
-    color: #9629e6;
+    color: #309fe6;
     text-align: center;
     -webkit-box-shadow: 0 30px 40px 0 rgba(52,27,159,.1);
     box-shadow: 0 30px 40px 0 rgba(52,27,159,.1);
@@ -1727,7 +1727,7 @@ select.form-control.has-value{
     left: 0;
     font-family: 'themify';
     font-weight: 400;
-    color: #9629e6;
+    color: #309fe6;
 }
 
 /*feature new style*/
@@ -1794,7 +1794,7 @@ select.form-control.has-value{
     display: block;
     font-size: 25px;
     margin-bottom: 10px;
-    color: #9629e6;
+    color: #309fe6;
 }
 .feature-tab-content{
     margin-top: 25px;
@@ -1812,7 +1812,7 @@ select.form-control.has-value{
 .background-img:before{
     position: absolute;
     content: '';
-    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+    background-image:linear-gradient(180deg,#4e73df 10%,#17c0eb 100%);
     width: 100%;
     height: 100%;
     top: 0;
@@ -1872,7 +1872,7 @@ select.form-control.has-value{
     -webkit-animation: ripple-white 1s linear infinite;
     animation: ripple-white 1s linear infinite;
     -webkit-transition: .5s;
-    background-color: #9629e6;
+    background-color: #309fe6;
 }
 @-webkit-keyframes ripple-white {
     0% {
@@ -1937,7 +1937,7 @@ select.form-control.has-value{
 .single-counter span{
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
-    color: #9629e6;
+    color: #309fe6;
     font-size: 25px;
     line-height: 28px;
 }
@@ -1959,7 +1959,7 @@ select.form-control.has-value{
 .single-pricing-pack:hover {
     box-shadow: 0 1rem 3rem rgba(31,45,61,.125)!important;
     transform: translate(0, -5px);
-    border-top: 4px solid #9629e6;
+    border-top: 4px solid #309fe6;
 }
 .single-pricing-pack .card-body {
     color: rgb(132, 146, 166);
@@ -2009,7 +2009,7 @@ select.form-control.has-value{
 .popular-price{
     box-shadow: 0 1rem 3rem rgba(31,45,61,.125)!important;
     transform: translate(0, -5px);
-    border-top: 4px solid #9629e6 !important;
+    border-top: 4px solid #309fe6 !important;
 }
 
 
@@ -2171,7 +2171,7 @@ select.form-control.has-value{
     outline: none;
 }
 .dot-indicator.owl-theme button.owl-dot.active span{
-    background: #9629e6;
+    background: #309fe6;
     border: 2px solid transparent;
     -webkit-transform: scale(0.8);
     transform: scale(0.8);
@@ -2200,10 +2200,10 @@ select.form-control.has-value{
 .arrow-indicator.owl-theme .owl-nav [class*=owl-] span{
     font-size: 20px;
     line-height: 20px;
-    color: #9629e6;
+    color: #309fe6;
 }
 .arrow-indicator.owl-theme .owl-nav [class*=owl-]:hover{
-    background: #9629e6 !important;
+    background: #309fe6 !important;
 }
 .arrow-indicator.owl-theme .owl-nav [class*=owl-]:hover span{
     color: #ffffff !important;
@@ -2264,7 +2264,7 @@ select.form-control.has-value{
     color: #565656;
 }
 .list-creative .address::before {
-    background: #9629e6;
+    background: #309fe6;
 }
 .list-creative .phone::before {
     background: #202877;
@@ -2277,7 +2277,7 @@ select.form-control.has-value{
     text-decoration: none;
 }
 .list-terms-medium a:hover {
-    color: #9629e6;
+    color: #309fe6;
 }
 
 .google-map{
