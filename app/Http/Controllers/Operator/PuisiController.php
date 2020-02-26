@@ -13,6 +13,12 @@ use Yajra\Datatables\Datatables;
 
 class PuisiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('IsOperator');
+    }
+
     public function index()
     {
         $puisi = Puisi::all();

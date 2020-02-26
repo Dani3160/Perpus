@@ -13,9 +13,11 @@ Puisi
 
 <h5 class="mb-4" style="font-weight: bold;">Puisi ( Cerita Pendek )</h5>
 
+@if($count > 0)
+
 @foreach($puisi as $n)
 <div class="card mb-3">
-    <img src="{{asset('/user/image/default.jpg')}}" style="width: 100%; height: 240px;" alt="" class="img-responsive">
+    <img src="/user/image/puisi/{{$n->puisi_gambar}}" style="width: 100%; height: 240px;" alt="" class="img-responsive">
     <div class="card-body">
         
         
@@ -27,5 +29,11 @@ Puisi
     </div>
 </div>
 @endforeach
+
+@else 
+
+<h5 class="mt-3">Tidak ada puisi</h5>
+
+@endif
 
 @stop

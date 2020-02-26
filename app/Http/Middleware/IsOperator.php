@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class IsUser
+class IsOperator
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,10 @@ class IsUser
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->user()->role == 'Siswa'){
+        if (auth()->user()->role == 'Operator') {
             return $next($request);
+        }else{
+            return redirect()->back();
         }
-
-        return redirect()->back()->withErrors('kamu tidak punya akses manager');
     }
 }

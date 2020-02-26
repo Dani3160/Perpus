@@ -264,17 +264,11 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-team-member position-relative">
                         <div class="team-image">
-                            <img src="{{asset('landing/img/team-4.jpg')}}" alt="Team Members" class="img-fluid rounded-circle">
+                            <img src="{{asset('landing/img/team-1.jpg')}}" alt="Team Members" class="img-fluid rounded-circle">
                         </div>
                         <div class="team-info text-white rounded-circle d-flex flex-column align-items-center justify-content-center">
-                            <h5 class="mb-0">Briyan Frahmadi</h5>
-                            <h6>Backend Developer</h6>
-                            <ul class="list-inline team-social social-icon mt-4 text-white">
-                                <li class="list-inline-item"><a href="#"><span class="ti-facebook"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-twitter"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-github"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-dribbble"></span></a></li>
-                            </ul>
+                            <h5 class="mb-0">Wawan Hermawan,MM</h5>
+                            <h6>Penanggung Jawab</h6>
                         </div>
                     </div>
                 </div>
@@ -284,14 +278,43 @@
                             <img src="{{asset('landing/img/team-1.jpg')}}" alt="Team Members" class="img-fluid rounded-circle">
                         </div>
                         <div class="team-info text-white rounded-circle d-flex flex-column align-items-center justify-content-center">
-                            <h5 class="mb-0">Dani Ramdani</h5>
-                            <h6>Fullstack Developer</h6>
-                            <ul class="list-inline team-social social-icon mt-4 text-white">
-                                <li class="list-inline-item"><a href="#"><span class="ti-facebook"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-twitter"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-github"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-dribbble"></span></a></li>
-                            </ul>
+                            <h5 class="mb-0">Utep Sutiana,ST</h5>
+                            <h6>Penasihat</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-team-member position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('landing/img/team-3.jpg')}}" alt="Team Members" class="img-fluid rounded-circle">
+                        </div>
+                        <div class="team-info text-white rounded-circle d-flex flex-column align-items-center justify-content-center">
+                            <h5 class="mb-0">Ela Siti Laela,S.Kom</h5>
+                            <h6>Penasihat</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-team-member position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('landing/img/team-2.jpg')}}" alt="Team Members" class="img-fluid rounded-circle">
+                        </div>
+                        <div class="team-info text-white rounded-circle d-flex flex-column align-items-center justify-content-center">
+                            <h5 class="mb-0">Ajang Supardi,S.Kom</h5>
+                            <h6>Penasihat</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-team-member position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('landing/img/team-4.jpg')}}" alt="Team Members" class="img-fluid rounded-circle">
+                        </div>
+                        <div class="team-info text-white rounded-circle d-flex flex-column align-items-center justify-content-center">
+                            <h5 class="mb-0">Briyan Frahmadi</h5>
+                            <h6>Web Developer</h6>
                         </div>
                     </div>
                 </div>
@@ -302,13 +325,18 @@
                         </div>
                         <div class="team-info text-white rounded-circle d-flex flex-column align-items-center justify-content-center">
                             <h5 class="mb-0">Doni Suhendar</h5>
-                            <h6>Backend Developer</h6>
-                            <ul class="list-inline team-social social-icon mt-4 text-white">
-                                <li class="list-inline-item"><a href="#"><span class="ti-facebook"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-twitter"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-github"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-dribbble"></span></a></li>
-                            </ul>
+                            <h6>Web Developer</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-team-member position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('landing/img/team-1.jpg')}}" alt="Team Members" class="img-fluid rounded-circle">
+                        </div>
+                        <div class="team-info text-white rounded-circle d-flex flex-column align-items-center justify-content-center">
+                            <h5 class="mb-0">Dani Ramdani</h5>
+                            <h6>Web Developer</h6>
                         </div>
                     </div>
                 </div>
@@ -319,16 +347,11 @@
                         </div>
                         <div class="team-info text-white rounded-circle d-flex flex-column align-items-center justify-content-center">
                             <h5 class="mb-0">Irfan Abdul Muin</h5>
-                            <h6>Backend Developer</h6>
-                            <ul class="list-inline team-social social-icon mt-4 text-white">
-                                <li class="list-inline-item"><a href="#"><span class="ti-facebook"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-twitter"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-github"></span></a></li>
-                                <li class="list-inline-item"><a href="#"><span class="ti-dribbble"></span></a></li>
-                            </ul>
+                            <h6>Web Developer</h6>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </section>
@@ -347,19 +370,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="single-blog-card card border-0 shadow-sm">
-                        <span class="category position-absolute badge badge-pill badge-primary">Lifestyle</span>
+                        <span class="category position-absolute badge badge-pill badge-primary">Terbaru</span>
                         <img src="{{asset('landing/img/blog/1.jpg')}}" class="card-img-top position-relative" alt="blog">
                         <div class="card-body">
                             <div class="post-meta mb-2">
                                 <ul class="list-inline meta-list">
                                     <li class="list-inline-item">Jan 21, 2019</li>
-                                    <li class="list-inline-item"><span>45</span> Comments</li>
-                                    <li class="list-inline-item"><span>10</span> Share</li>
                                 </ul>
                             </div>
-                            <h3 class="h5 card-title"><a href="#">Appropriately productize fully</a></h3>
+                            <h3 class="h5 card-title"><a href="#">DESIMASI IoT (Internet Of Think)</a></h3>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk.</p>
-                            <a href="#" class="detail-link">Read more <span class="ti-arrow-right"></span></a>
+                            <a href="#" class="detail-link">Baca Selengkapnya <span class="ti-arrow-right"></span></a>
                         </div>
                     </div>
                 </div>
@@ -377,7 +398,7 @@
                             </div>
                             <h3 class="h5 card-title"><a href="#">Quickly formulate backend</a></h3>
                             <p class="card-text">Synergistically engage effective ROI after customer directed partnerships.</p>
-                            <a href="#" class="detail-link">Read more <span class="ti-arrow-right"></span></a>
+                            <a href="#" class="detail-link">Baca Selengkapnya <span class="ti-arrow-right"></span></a>
                         </div>
                     </div>
                 </div>
@@ -395,7 +416,7 @@
                             </div>
                             <h3 class="h5 card-title"><a href="#">Objectively extend extensive</a></h3>
                             <p class="card-text">Holisticly mesh open-source leadership rather than proactive users. </p>
-                            <a href="#" class="detail-link">Read more <span class="ti-arrow-right"></span></a>
+                            <a href="#" class="detail-link">Baca Selengkapnya <span class="ti-arrow-right"></span></a>
                         </div>
                     </div>
                 </div>

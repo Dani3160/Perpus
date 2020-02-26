@@ -13,6 +13,8 @@ Novel
 
 <h5 class="mb-4" style="font-weight: bold;">Novel</h5>
 
+@if($count > 0)
+
 @foreach($novel as $n)
 <div class="card mb-3">
     <img src="{{asset('/user/image/default.jpg')}}" style="width: 100%; height: 240px;" alt="" class="img-responsive">
@@ -27,5 +29,11 @@ Novel
     </div>
 </div>
 @endforeach
+
+@else 
+
+<h5 class="mt-3">Tidak ada novel</h5>
+
+@endif 
 
 @stop

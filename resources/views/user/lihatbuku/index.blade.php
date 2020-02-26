@@ -9,24 +9,24 @@ Buku
 @stop
  
 @section('konten')
-<h5 class="text-dark mb-4" style="font-weight:bold;"><img src="{{asset('user/image/buku.png')}}" style="width: 15%;" alt="">Kategori Buku</h5>
+<h5 class="text-dark mb-4" style="font-weight:bold;"><img src="{{asset('user/image/search.png')}}" style="width: 8%;" alt=""> Cari Buku</h5>
 
-
-<div class="card mb-3">
+<div class="card shadow mb-3">
     <div class="card-body">
         <form action="{{route('user.buku')}}" method="get" accept="charset-utf8">
             <div class="row">
-
                 <div class="col-12">
                 @foreach($klasifikasi as $k => $key)
-                    <p class="mb-0" style="font-size: 14px;font-weight:bold;"><input type="radio" id="{{$key->klasifikasi_id}}" name="klasifilasi_id"  class="input-hidden" value="{{$key->klasifikasi_id}}" /> <label for="{{$key->klasifikasi_id}}">{{$key->klasifikasi_nama}}</label> </p>  
+                    <input type="radio" id="{{$key->klasifikasi_id}}" name="klasifikasi_id"  class="input-hidden mb-0" value="{{$key->klasifikasi_id}}" /> <label for="{{$key->klasifikasi_id}}" class="mb-0" style="color: #000;">{{$key->klasifikasi_nama}}</label>
+                    <hr class="mt-2" style="border-color:#3793e4;">
                 @endforeach
-                    <button type="submit" class="btn btn-link mb-0"><i class="fas fa-angle-right"></i></button>
+                    <button type="submit" class="btn btn-info mb-0" style="width: 100%; font-weight:bold;"><i class="fas fa-search"></i> Cari</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
 
 
 @stop 

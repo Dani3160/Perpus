@@ -15,11 +15,12 @@ Baca Puisi
 
     <p style="font-size: 15px;">Karya : {{$puisi->puisi_karya}}</p>
     
-    <img src="{{asset('user/image/default.jpg')}}" class="img-responsive" alt="">
+    <img src="/user/image/puisi/{{$puisi->puisi_gambar}}" class="img-fluid" style="height:250px;" alt="">
 
-    <p class="mt-4">{{$puisi->bait1}}</p>    
-    <p class="mt-4">{{$puisi->bait2}}</p>    
-    <p class="mt-4">{{$puisi->bait3}}</p>    
-    <p class="mt-4">{{$puisi->bait4}}</p>    
-    
+    <div class="container">
+        <p class="mt-4">{{$puisi->bait1}}</p>    
+        <p class="mt-4">{{$puisi->bait2}}</p>    
+        <p class="mt-4">{{$puisi->bait3}}</p>    
+        <p class="mt-4">{{$puisi->bait4}}</p>    
+    </div>
 @stop

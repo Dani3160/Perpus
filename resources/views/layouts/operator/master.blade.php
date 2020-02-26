@@ -168,7 +168,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#resumeMaster" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-user"></i>
+          <i class="fas fa-pen"></i>
           <span>Pengaturan Resume</span>
         </a>
         <div id="resumeMaster" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -181,7 +181,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#novelMaster" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-user"></i>
+          <i class="fas fa-upload"></i>
           <span>Pengaturan Karya</span>
         </a>
         <div id="novelMaster" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">

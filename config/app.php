@@ -180,7 +180,7 @@ return [
         // EXCEL
         Maatwebsite\Excel\ExcelServiceProvider::class,
         // Intervention Image
-        // Intervention\Image\ImageServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -238,7 +238,7 @@ return [
         // EXCEL
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         // Intervention Image
-        // 'Image' => Intervention\Image\Facades\Image::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

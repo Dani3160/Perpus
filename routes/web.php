@@ -74,12 +74,15 @@ Route::prefix('user')->group(function(){
 	// Lihat Buku
 	Route::prefix('buku')->group(function(){
 		Route::get('/', 'User\UserController@lihatBuku')->name('user.klasifikasi.buku');
-		Route::get('/klasifikasi', 'User\UserController@getBuku')->name('user.buku');
+		Route::get('/lihat', 'User\UserController@getBuku')->name('user.buku');
+		Route::get('/detail/{id}', 'User\UserController@buku')->name('user.buku.detail');
 	});
 	// Akhir lihat buku
 });
-
 // Akhir User
+
+
+// ########################## BATAS USER ################################# //
 
 
 // Operator
@@ -278,6 +281,10 @@ Route::prefix('operator')->group(function(){
 
 });
 // Akhir Operator
+
+
+// ########################## BATAS OPERATOR ################################# //
+
 
 
 

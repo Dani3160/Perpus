@@ -11,6 +11,12 @@ use DB;
 
 class OperatorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('IsOperator');
+    }
+
     public function index()
     {
         // Angota

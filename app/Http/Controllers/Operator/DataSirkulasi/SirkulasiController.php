@@ -16,6 +16,12 @@ use Yajra\Datatables\Datatables;
 
 class SirkulasiController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('IsOperator');
+    }
     
     // Peminjaman
     
@@ -186,7 +192,7 @@ class SirkulasiController extends Controller
         $sirkulasi->aturan_id = $aturan->aturan_id;
         
         $tgl = date('d', strtotime($sirkulasi->kembali_pinjam));
-        $tgl2 = date('y', strtotime($sirkulasi->kembali_pinjam));
+        $tgl2 = date('m', strtotime($sirkulasi->kembali_pinjam));
         if($tgl == 1){
             $tgl = date('d', strtotime($sirkulasi->kembali_pinjam)) + 29;
             $tgl2 = date('m') - 1;

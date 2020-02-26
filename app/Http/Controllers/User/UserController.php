@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\User;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\DataMaster\User;
+use App\Model\DataMaster\Biblio;
+use App\Model\DataPendukung\Klasifikasi;
 use App\Model\Resume;
 use App\Cerpen;
 use App\Model\Novel;
 use App\Puisi;
 use DB;
+use Image;
 use Auth;
 
 class UserController extends Controller
@@ -18,6 +20,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('IsUser');
     }
 
     public function index()
@@ -47,6 +50,14 @@ class UserController extends Controller
         } else {
             $profile = New User;
         }
+
+        $foto = $request->File('foto');
+        if ($foto) {
+			$filename = time() . '.' . $foto->getClientOriginalExtension();
+			Image::make($foto)->resize(400, 400)->save(public_path('operator/image/datamaster/biblio/' .$filename));
+			$profile->foto = $filename;
+        }
+        
         $profile->name = $req->name;
         $profile->email = $req->email;
         $profile->jenis_kelamin = $req->jenis_kelamin;
@@ -81,6 +92,13 @@ class UserController extends Controller
         
         $novel->novel_judul = $request->novel_judul;
         $novel->novel_karya = $request->novel_karya;
+        
+        $file = $request->file('novel_gambar');
+        $filename = time() .'.'. $file->getClientOriginalExtension();
+        Image::make($file)->save( public_path('/user/image/novel/' . $filename));
+
+        $novel->novel_gambar = $filename;
+        
         // $novel->novel_gambar = $request->novel_gambar;
         $novel->novel_isi = $request->novel_isi;
         $novel->konfirmasi = 1;
@@ -95,6 +113,13 @@ class UserController extends Controller
         
         $cerpen->cerpen_judul = $request->cerpen_judul;
         $cerpen->cerpen_karya = $request->cerpen_karya;
+
+        $file = $request->file('cerpen_gambar');
+        $filename = time() .'.'. $file->getClientOriginalExtension();
+        Image::make($file)->save( public_path('/user/image/cerpen/' . $filename));
+
+        $cerpen->cerpen_gambar = $filename;
+
         // $cerpen->cerpen_gambar = $request->cerpen_gambar;
         $cerpen->cerpen_isi = $request->cerpen_isi;
         $cerpen->konfirmasi = 1;
@@ -109,6 +134,13 @@ class UserController extends Controller
        
         $puisi->puisi_judul = $request->puisi_judul;
         $puisi->puisi_karya = $request->puisi_karya;
+
+        $file = $request->file('puisi_gambar');
+        $filename = time() .'.'. $file->getClientOriginalExtension();
+        Image::make($file)->save( public_path('/user/image/puisi/' . $filename));
+
+        $puisi->puisi_gambar = $filename;
+
         // $puisi->puisi_gambar = $request->puisi_gambar;
         $puisi->bait1 = $request->bait1;
         $puisi->bait2 = $request->bait2;
@@ -134,7 +166,12 @@ class UserController extends Controller
                     ->join('users', 'novel.anggota_id', 'users.id')
                     ->select('users.name', 'novel.*')
                     ->paginate(5);
-        return view('user.unggahkarya.novel.index', compact('novel'));
+        $count = DB::table('novel')
+                    ->where('konfirmasi', '=', 2)
+                    ->join('users', 'novel.anggota_id', 'users.id')
+                    ->select('users.name', 'novel.*')
+                    ->count();
+        return view('user.unggahkarya.novel.index', compact('novel', 'count'));
     }
 
     public function bacaNovel($id)
@@ -150,7 +187,12 @@ class UserController extends Controller
                     ->join('users', 'cerpen.anggota_id', 'users.id')
                     ->select('users.name', 'cerpen.*')
                     ->paginate(5);
-        return view('user.unggahkarya.cerpen.index', compact('cerpen'));
+        $count = DB::table('cerpen')
+                    ->where('konfirmasi', '=', 2)
+                    ->join('users', 'cerpen.anggota_id', 'users.id')
+                    ->select('users.name', 'cerpen.*')
+                    ->count();
+        return view('user.unggahkarya.cerpen.index', compact('cerpen', 'count'));
     }
 
     public function bacaCerpen($id)
@@ -166,7 +208,12 @@ class UserController extends Controller
                     ->join('users', 'puisi.anggota_id', 'users.id')
                     ->select('users.name', 'puisi.*')
                     ->paginate(5);
-        return view('user.unggahkarya.puisi.index', compact('puisi'));
+        $count = DB::table('puisi')
+                    ->where('konfirmasi', '=', 2)
+                    ->join('users', 'puisi.anggota_id', 'users.id')
+                    ->select('users.name', 'puisi.*')
+                    ->count();
+        return view('user.unggahkarya.puisi.index', compact('puisi', 'count'));
     }
 
     public function bacaPuisi($id)
@@ -178,7 +225,7 @@ class UserController extends Controller
     // Akhir karya
 
     // Lihat Buku
-    public function lihatBuku()
+    public function lihatBuku(Request $req)
     {
         $klasifikasi = DB::table('klasifikasi')->get();
         return view('user.lihatbuku.index', compact('klasifikasi'));
@@ -187,16 +234,36 @@ class UserController extends Controller
     public function getBuku(Request $req)
     {
         $id = $req->get('klasifikasi_id');
-
-        if($id)
-        {
-            $klasifikasi = DB::table('klasifikasi')->where('klasifikasi', '=' ,$id)->first();
-    		$buku = DB::table('biblio')->with('klasifikasi')->where('promosi', '=', 1)->where('klasifikasi', '=', $id)->paginate(8);
-        }else{
-            $buku = DB::table('biblio')->get();
-        }
+        $klasifikasi = Klasifikasi::find($id);
+        $buku = Biblio::with('klasifikasi')
+                        ->where('promosi', '=', 1)
+                        ->where('klasifikasi_id', '=', $id)
+                        ->join('penerbit', 'penerbit.penerbit_id', 'biblio.penerbit_id')
+                        ->join('penulis', 'penulis.penulis_id', 'biblio.penulis_id')
+                        ->select('biblio.*', 'penerbit.*', 'penulis.*')
+                        ->get();
+        $count = Biblio::with('klasifikasi')
+                        ->where('promosi', '=', 1)
+                        ->where('klasifikasi_id', '=', $id)
+                        ->join('penerbit', 'penerbit.penerbit_id', 'biblio.penerbit_id')
+                        ->join('penulis', 'penulis.penulis_id', 'biblio.penulis_id')
+                        ->select('biblio.*', 'penerbit.*', 'penulis.*')
+                        ->count();
         
-        return view('user.lihatbuku.buku', compact('buku'));
+        return view('user.lihatbuku.buku', compact('buku', 'id', 'klasifikasi', 'count'));
+    }
+
+    public function buku($id)
+    {
+        $biblio = DB::table('biblio')
+        ->where('biblio_id', '=', $id)
+        ->join('penerbit', 'penerbit.penerbit_id', 'biblio.penerbit_id')
+        ->join('penulis', 'penulis.penulis_id', 'biblio.penulis_id')
+        ->join('klasifikasi', 'klasifikasi.klasifikasi_id', 'biblio.klasifikasi_id')
+        ->select('biblio.*', 'penulis.*', 'penerbit.*', 'klasifikasi.*')
+        ->first();
+
+        return view('user.lihatbuku.detail', compact('biblio'));
     }
 
     // Akhir Lihat Buku
@@ -211,8 +278,14 @@ class UserController extends Controller
                     ->join('users', 'resume.anggota_id', 'users.id')
                     ->select('resume.*', 'users.name')
                     ->paginate(5);
+        
+        $count = DB::table('resume')
+                    ->where('anggota_id', '=', $user->id)
+                    ->join('users', 'resume.anggota_id', 'users.id')
+                    ->select('resume.*', 'users.name')
+                    ->count();
 
-        return view('user.literasi.index', compact('resume'));
+        return view('user.literasi.index', compact('resume', 'count'));
     }
 
     public function detailLiterasi($id)

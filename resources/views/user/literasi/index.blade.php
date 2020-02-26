@@ -10,7 +10,7 @@ Literasi
 
 @section('konten')
 
-<div class="row mt-3 mb-3">
+<div class="row mt-4 mb-4">
     <div class="col-8">
         <h6 class="text-dark" style="font-weight:bold;">
             Resume Literasi
@@ -18,24 +18,32 @@ Literasi
     </div>
     <div class="col-4">
         <a href="{{route('user.formliterasi')}}">
-            <button class="btn btn-sm text-white ml-2" style="background: #5caeea; margin-top: -5px;"><i class="fas fa-plus-circle" style="color: #fff;"></i> Tambah</button> 
+            <button class="btn btn-sm text-white ml-2" style="background: #5caeea; font-size: 10px; margin-top: -5px;"><i class="fas fa-plus-circle" style="color: #fff;"></i> Tambah</button> 
         </a>
     </div>
 </div>
+
+@if($count > 0)
+
 @foreach($resume as $r)
-<div class="card mb-3">
+<div class="card mb-4">
     <div class="card-body">
         <div class="row">
             <div class="col-4">
-                <p class="mb-0" style="font-size: 14px;font-weight:bold;">{{$r->tanggal_resume}}</p>
+                <p class="mb-0" style="font-size: 10px;font-weight:bold;"><?php echo date('d-m-Y', strtotime($r->tanggal_resume)); ?></p>
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <p class="mb-0">{{$r->resume_judul}}</p>    
             </div>
-            <div class="col-2"><a href="{{route('user.detail.literasi', $r->resume_id)}}"><i class="fas fa-edit"></i></a></div>
+            <div class="col-3"><a href="{{route('user.detail.literasi', $r->resume_id)}}" style="font-size: 12px;"><i class="fas fa-search"></i> lihat</a></div>
         </div>
     </div>
 </div>
 @endforeach
 {{$resume->links()}}
+
+@else
+<h5 class="mt-3">Tidak ada resume literasi</h5>
+@endif
+
 @stop 

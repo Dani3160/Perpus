@@ -11,4 +11,10 @@ class Klasifikasi extends Model
     protected $primaryKey = 'klasifikasi_id';
     const CREATED_AT = 'pembuatan';
     const UPDATED_AT = 'perubahan';
+
+    public function biblio()
+    {
+    	return $this->hasMany('App\Model\DataMaster\Biblio');
+    }
+
 }

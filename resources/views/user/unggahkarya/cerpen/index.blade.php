@@ -12,11 +12,12 @@ Cerpen
 
 <h5 class="mb-4" style="font-weight: bold;">Cerpen ( Cerita Pendek )</h5>
 
+@if($count > 0)
+
 @foreach($cerpen as $n)
 <div class="card mb-3">
     <img src="{{asset('/user/image/default.jpg')}}" style="width: 100%; height: 240px;" alt="" class="img-responsive">
     <div class="card-body">
-        
         
         <h4 style="font-weight: bold;">{{$n->cerpen_judul}}</h4>
         
@@ -26,5 +27,11 @@ Cerpen
     </div>
 </div>
 @endforeach
+
+@else 
+
+<h5 class="mt-3">Tidak ada cerpen</h5>
+
+@endif 
 
 @stop

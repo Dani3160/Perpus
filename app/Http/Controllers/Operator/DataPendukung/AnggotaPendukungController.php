@@ -16,6 +16,12 @@ use Yajra\Datatables\Datatables;
 
 class AnggotaPendukungController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('IsOperator');
+    }
+
     public function anggotaPendukung()
     {
         $jurusan = Jurusan::all();

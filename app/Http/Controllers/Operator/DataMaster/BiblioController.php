@@ -21,6 +21,12 @@ use Yajra\Datatables\Datatables;
 
 class BiblioController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('IsOperator');
+    }
+
 	public function daftarbiblio()
 	{
 		$penerbit = Penerbit::All();
@@ -169,10 +175,10 @@ class BiblioController extends Controller
 		$foto = $request->File('gambar');
 		if ($foto) {
 			$filename = time() . '.' . $foto->getClientOriginalExtension();
-			Image::make($foto)->resize(400, 400)->save(public_path('image/datamaster/biblio/' .$filename));
+			Image::make($foto)->resize(400, 400)->save(public_path('operator/image/datamaster/biblio/' .$filename));
 			$biblio->gambar = $filename;
 		} else {
-			$biblio->gambar = 0;
+			$biblio->gambar = 'default.png';
 		}
 		if ($request->hasFile('lampiran')) 
 		{

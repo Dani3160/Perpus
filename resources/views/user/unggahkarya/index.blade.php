@@ -1,7 +1,7 @@
 @extends('layouts.user.master')
 
 @section('judul')
-Dashboard
+Unggah Karya
 @stop
 
 @section('navKonten')
@@ -22,7 +22,7 @@ Dashboard
 
 
 <div id="cerpen" class="tabcontent mt-4">
-    <form action="{{route('user.unggah.cerpen')}}" method="post">
+    <form action="{{route('user.unggah.cerpen')}}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="anggota_id" value="{{Auth::user()->id}}">
         <div class="form-group">
@@ -50,7 +50,7 @@ Dashboard
 </div>
 
 <div id="novel" class="tabcontent mt-4">
-    <form action="{{route('user.unggah.novel')}}" method="post">
+    <form action="{{route('user.unggah.novel')}}" method="post" enctype="multipart/form-data">
         @csrf 
         <input type="hidden" name="anggota_id" value="{{Auth::user()->id}}">
         <div class="form-group">
@@ -77,7 +77,7 @@ Dashboard
 </div>
 
 <div id="puisi" class="tabcontent mt-4">
-    <form action="{{route('user.unggah.puisi')}}" method="post">
+    <form action="{{route('user.unggah.puisi')}}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="anggota_id" value="{{Auth::user()->id}}">
         <div class="form-group">

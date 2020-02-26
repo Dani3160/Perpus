@@ -24,6 +24,11 @@ class Biblio extends Model
     {
     	return $this->belongsTo('App\Model\DataPendukung\StatusItem');
     }
+
+    public function klasifikasi()
+    {
+    	return $this->belongsTo('App\Model\DataPendukung\Klasifikasi');
+    }
 }
 
 
