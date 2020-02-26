@@ -11,7 +11,7 @@ Dashboard
 @section('konten')
 
 <div class="container">
-    <h6 style="font-weight:bold; color:#000;">Selamat Datang, {{ Auth::user()->name }}</h6>
+    <h6 style="font-weight:bold; color:#000;">Selamat <script src="{{asset('js/sapa.js')}}"></script>{{ Auth::user()->name }}</h6>
 </div>
 <div class="container-fluid mb-3">
     

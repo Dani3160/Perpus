@@ -9,7 +9,7 @@ Dashboard Operator
 
     <div class="row mt-5">
         <div class="col-md-12">
-            <h4 class="text-dark">Selamat Siang, {{Auth::user()->name}}!</h4>
+            <h4 class="text-dark">Selamat <script src="{{asset('js/sapa.js')}}"></script>{{Auth::user()->name}}!</h4>
         </div>
     </div>
 
