@@ -15,6 +15,38 @@ Peminjaman Buku
 	</div>
 </div>
 
+<div class="col-md-12 mt-3 mb-3">
+	<div class="row">
+		<div class="col-md-8"></div>
+		
+		<div class="col-md-4 float-right">
+			@if ($message = Session::get('success'))
+			<div class="toast" data-autohide="false">
+				<div class="toast-header">
+					<strong class="mr-auto text-primary">Sukses</strong>
+					<small class="text-muted">Baru saja</small>
+					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+				</div>
+				<div class="toast-body">
+					<strong class="text-success">{{$message}}</strong>
+				</div>
+			</div>
+			<!-- <div class="alert alert-success alert-block">
+				<button type="button" class="close" data-dismiss="alert">×</button> 
+				<strong>{{ $message }}</strong>
+			</div> -->
+			@endif
+
+			@if ($message = Session::get('error'))
+				<div class="alert alert-danger alert-block">
+					<button type="button" class="close" data-dismiss="alert">×</button> 
+					<strong>{{ $message }}</strong>
+				</div>
+			@endif
+		</div>
+	</div>
+</div>
+
 <div id="peminjamanForm" class="tabcontent">
     <div class="row justify-content-center mt-2 mb-5">
         <div class="col-md-8 mt-5">
@@ -70,7 +102,7 @@ Peminjaman Buku
                         @csrf
                         <div class="form-group">
                             <label>Masukkan Nama Anggota *</label>
-                            <select class="cari3" style="width: 100%;" required name="anggota_id"></select>
+                            <select class="cari3" id="formInput" style="width: 100%;" required name="anggota_id"></select>
                         </div>
                         <div class="form-group">
                             <label>Masukkan Buku Yang Akan Di Kembalikan *</label>
@@ -153,6 +185,12 @@ Peminjaman Buku
 @stop 
 
 @push('scripts')
+<script>
+$(document).ready(function(){
+    $('.toast').toast('show', 1500);
+});
+</script>
+
 <script type="text/javascript">
     function openTabs(evt, cityName) {
         var i, tabcontent, tablinks;
@@ -182,7 +220,7 @@ Peminjaman Buku
         return {
           results:  $.map(data, function (item) {
             return {
-              text: item.name,
+              text: item.name + ' , ' + item.kelas_nama,
               id: item.id
             }
           })
@@ -224,7 +262,7 @@ Peminjaman Buku
         return {
           results:  $.map(data, function (item) {
             return {
-              text: item.name,
+              text: item.name+ ' , ' + item.kelas_nama,
               id: item.id
             }
           })

@@ -65,7 +65,7 @@ class PuisiController extends Controller
         $puisi = Puisi::findOrFail($id);
         $puisi->konfirmasi = $konfirmasi;
         $puisi->save();
-        return redirect()->route('operator.puisi')->with(['success' => 'Data Berhasil Di Hapus...']);
+        return redirect()->route('operator.puisi')->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
     public function edit($id)
@@ -79,6 +79,6 @@ class PuisiController extends Controller
     {
         $puisi = Puisi::where('puisi_id',$id)->delete();
 
-		return redirect()->route('operator.puisi');
+		return redirect()->route('operator.puisi')->with(['success' => 'Data Berhasil Di Hapus...']);
     }
 }

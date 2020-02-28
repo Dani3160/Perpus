@@ -127,7 +127,7 @@ class BiblioController extends Controller
 			$biblio->terhapus = $hapus;
 			$biblio->save();
 		}
-		return redirect()->route('operator.biblio')->with(['sukses' => 'Sukses!!!']);
+		return redirect()->route('operator.biblio')->with(['berhasil' => 'Data Berhasil Di Simpan...']);
 	}
 
 	public function show($id)
@@ -195,7 +195,7 @@ class BiblioController extends Controller
 		$biblio->publik = $request->publik;
 		$biblio->promosi = $request->promosi;
 		$biblio->save();
-		return redirect()->route('operator.biblio')->with(['pesan' => 'Sukses!!']);
+		return redirect()->route('operator.biblio')->with(['berhasil' => 'Data Berhasil Di Ubah...']);
 	}
 
 	public function export() 
@@ -218,7 +218,7 @@ class BiblioController extends Controller
 		$biblio = Biblio::findOrFail($id);
 		$biblio->terhapus = $hapus;
 		$biblio->save();
-		return redirect()->route('operator.biblio');
+		return redirect()->route('operator.biblio')->with(['berhasil' => 'Data Berhasil Di Hapus...']);
 	}
 
 	public function riwayatdatatable()

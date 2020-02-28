@@ -6,7 +6,7 @@
 @section('konten')
 
 <div class="col-md-12">
-	<div class="tab mt-5">
+	<div class="tab mt-4">
 		<button class="tablinks" id="defaultOpen" onclick="openTabs(event, 'daftarpendukung')">Daftar Pendukung</button>
 		<button class="tablinks" onclick="openTabs(event, 'tambahpendukung')">Tambah Pendukung</button>
 		<button class="tablinks" onclick="openTabs(event, 'riwayat')">Riwayat</button>
@@ -14,29 +14,35 @@
 </div>
 
 <div class="col-md-12 mt-3 mb-3">
-	@if ($message = Session::get('success'))
-	<div class="toast" data-autohide="false">
-		<div class="toast-header">
-			<strong class="mr-auto text-primary">Sukses</strong>
-			<small class="text-muted">Baru saja</small>
-			<button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
-		</div>
-		<div class="toast-body">
-			<strong class="text-success">{{$message}}</strong>
+	<div class="row">
+		<div class="col-md-8"></div>
+		
+		<div class="col-md-4 float-right">
+			@if ($message = Session::get('success'))
+			<div class="toast" data-autohide="false">
+				<div class="toast-header">
+					<strong class="mr-auto text-primary">Sukses</strong>
+					<small class="text-muted">Baru saja</small>
+					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+				</div>
+				<div class="toast-body">
+					<strong class="text-success">{{$message}}</strong>
+				</div>
+			</div>
+			<!-- <div class="alert alert-success alert-block">
+				<button type="button" class="close" data-dismiss="alert">×</button> 
+				<strong>{{ $message }}</strong>
+			</div> -->
+			@endif
+
+			@if ($message = Session::get('error'))
+				<div class="alert alert-danger alert-block">
+					<button type="button" class="close" data-dismiss="alert">×</button> 
+					<strong>{{ $message }}</strong>
+				</div>
+			@endif
 		</div>
 	</div>
-      <!-- <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button> 
-          <strong>{{ $message }}</strong>
-      </div> -->
-    @endif
-
-	@if ($message = Session::get('error'))
-		<div class="alert alert-danger alert-block">
-		<button type="button" class="close" data-dismiss="alert">×</button> 
-		<strong>{{ $message }}</strong>
-		</div>
-	@endif
 </div>
 
 <div id="daftarpendukung" class="tabcontent mb-4">

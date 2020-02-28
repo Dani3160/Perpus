@@ -92,7 +92,7 @@ class NovelController extends Controller
         $novel = Novel::findOrFail($id);
         $novel->konfirmasi = $konfirmasi;
         $novel->save();
-        return redirect()->route('operator.novel')->with(['success' => 'Data Berhasil Di Hapus...']);
+        return redirect()->route('operator.novel')->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
     /**
@@ -130,6 +130,6 @@ class NovelController extends Controller
     {
         $novel = Novel::where('novel_id',$id)->delete();
 
-		return redirect()->route('operator.novel');
+		return redirect()->route('operator.novel')->with(['success' => 'Data Berhasil Di Hapus...']);
     }
 }

@@ -31,6 +31,12 @@ Cerpen - Operator
 </div>
 @stop
 @push('scripts')
+<script>
+$(document).ready(function(){
+    $('.toast').toast('show', 1500);
+});
+</script>
+
 <script type="text/javascript">
   $(function() {
    $('#cerpenDatatable').DataTable({

@@ -95,7 +95,7 @@ class AnggotaPendukungController extends Controller
         $anggotaTipe->anggota_tipe_nama = $req->anggota_tipe_nama;
         $anggotaTipe->save();
 
-        return redirect()->route('operator.anggota.pendukung');
+        return redirect()->route('operator.anggota.pendukung')->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
 
@@ -112,7 +112,7 @@ class AnggotaPendukungController extends Controller
         $jurusan->jurusan_nama = $req->jurusan_nama;
         $jurusan->save();
 
-        return redirect()->route('operator.anggota.pendukung');
+        return redirect()->route('operator.anggota.pendukung')->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
 
@@ -130,7 +130,7 @@ class AnggotaPendukungController extends Controller
         $kelas->jurusan_id = $req->jurusan_nama;
         $kelas->save();
 
-        return redirect()->route('operator.anggota.pendukung');
+        return redirect()->route('operator.anggota.pendukung')->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
 }

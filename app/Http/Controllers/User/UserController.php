@@ -75,7 +75,7 @@ class UserController extends Controller
         $profile->jurusan_id = $req->jurusan_id;
         $profile->kelas_id = $req->kelas_id;
         $profile->save();
-        return redirect()->back();
+        return redirect()->back()->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
     public function unggahKarya()
@@ -104,7 +104,7 @@ class UserController extends Controller
         $novel->konfirmasi = 1;
         $novel->anggota_id = $request->anggota_id;
         $novel->save();
-        return redirect()->back();
+        return redirect()->back()->with(['success' => 'Data Berhasil Di Simpan...']);
     }
   
     public function cerpenPost(Request $request)
@@ -125,7 +125,7 @@ class UserController extends Controller
         $cerpen->konfirmasi = 1;
         $cerpen->anggota_id = $request->anggota_id;
         $cerpen->save();
-        return redirect()->back();
+        return redirect()->back()->with(['success' => 'Data Berhasil Di Simpan...']);
     }
     
     public function puisiPost(Request $request)
@@ -149,7 +149,7 @@ class UserController extends Controller
         $puisi->konfirmasi = 1;
         $puisi->anggota_id = $request->anggota_id;
         $puisi->save();
-        return redirect()->back();
+        return redirect()->back()->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
     // GET KARYA

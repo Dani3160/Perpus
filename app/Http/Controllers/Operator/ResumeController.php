@@ -126,6 +126,6 @@ class ResumeController extends Controller
     {
         $resume = Resume::where('resume_id',$id)->delete();
 
-		return redirect()->route('operator.resume');
+		return redirect()->route('operator.resume')->with(['success' => 'Data Berhasil Di Hapus...']);
     }
 }

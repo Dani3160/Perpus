@@ -88,119 +88,119 @@ Route::prefix('user')->group(function(){
 // Operator
 Route::prefix('operator')->group(function(){
     // Dasboard
-	Route::get('/dashboard', 'Operator\OperatorController@index')->name('operator.dashboard');
+	Route::get('/dashboard', 'Operator\OperatorController@index')->name('operator.dashboard')->middleware('IsOperator');
 	
 	// Anggota
 	Route::prefix('anggota')->group( function() {
-		Route::get('/', 'Operator\DataMaster\AnggotaController@daftarAnggota')->name('operator.anggota');
+		Route::get('/', 'Operator\DataMaster\AnggotaController@daftarAnggota')->name('operator.anggota')->middleware('IsOperator');
 		// DataTable-Anggota
-		Route::get('/datatable', 'Operator\DataMaster\AnggotaController@anggotaDatatable')->name('operator.anggota.datatables');
+		Route::get('/datatable', 'Operator\DataMaster\AnggotaController@anggotaDatatable')->name('operator.anggota.datatables')->middleware('IsOperator');
 		// Tambah-Anggota
-		Route::get('/tambah-anggota/store', 'Operator\DataMaster\AnggotaController@anggotaStore')->name('operator.anggota.store');
+		Route::get('/tambah-anggota/store', 'Operator\DataMaster\AnggotaController@anggotaStore')->name('operator.anggota.store')->middleware('IsOperator');
 		// Ubah-Anggota
-		Route::get('/ubah-anggota/{id}', 'Operator\DataMaster\AnggotaController@anggotaUbah')->name('operator.anggota.ubah');
+		Route::get('/ubah-anggota/{id}', 'Operator\DataMaster\AnggotaController@anggotaUbah')->name('operator.anggota.ubah')->middleware('IsOperator');
 		// Delete
-		Route::delete('/delete/{id}', 'Operator\DataMaster\AnggotaController@anggotaDelete')->name('operator.anggota.delete');
+		Route::delete('/delete/{id}', 'Operator\DataMaster\AnggotaController@anggotaDelete')->name('operator.anggota.delete')->middleware('IsOperator');
 	});
 
     // Operator-Biblio
     Route::prefix('biblio')->group(function(){
         // Tampil Biblio
-        Route::get('/', 'Operator\DataMaster\BiblioController@daftarbiblio')->name('operator.biblio');
-        Route::get('/datatable', 'Operator\DataMaster\BiblioController@bibliodatatable')->name('operator.biblio.datatable');
+        Route::get('/', 'Operator\DataMaster\BiblioController@daftarbiblio')->name('operator.biblio')->middleware('IsOperator');
+        Route::get('/datatable', 'Operator\DataMaster\BiblioController@bibliodatatable')->name('operator.biblio.datatable')->middleware('IsOperator');
 
         // Tambah Biblio
-        Route::post('/simpanbiblio', 'Operator\DataMaster\BiblioController@store')->name('operator.biblio.kirim');
+        Route::post('/simpanbiblio', 'Operator\DataMaster\BiblioController@store')->name('operator.biblio.kirim')->middleware('IsOperator');
         //cari penerbit dan penulis
-		Route::get('/penulis/cari', 'Operator\DataMaster\BiblioController@caripenulis');
-		Route::get('/penerbit/cari', 'Operator\DataMaster\BiblioController@caripenerbit');
-		Route::get('/sumberitem/cari', 'Operator\DataMaster\BiblioController@carisumberitem');
+		Route::get('/penulis/cari', 'Operator\DataMaster\BiblioController@caripenulis')->middleware('IsOperator');
+		Route::get('/penerbit/cari', 'Operator\DataMaster\BiblioController@caripenerbit')->middleware('IsOperator');
+		Route::get('/sumberitem/cari', 'Operator\DataMaster\BiblioController@carisumberitem')->middleware('IsOperator');
 		//ubah biblio
-		Route::get('/ubah/biblio/{biblio_id}', 'Operator\DataMaster\BiblioController@edit')->name('operator.biblio.edit');
-		Route::post('/{id}', 'Operator\DataMaster\BiblioController@update')->name('operator.biblio.ubah');
+		Route::get('/ubah/biblio/{biblio_id}', 'Operator\DataMaster\BiblioController@edit')->name('operator.biblio.edit')->middleware('IsOperator');
+		Route::post('/{id}', 'Operator\DataMaster\BiblioController@update')->name('operator.biblio.ubah')->middleware('IsOperator');
 		//detail biblio
-		Route::get('/detail/biblio/{id}', 'Operator\DataMaster\BiblioController@show')->name('operator.biblio.detail');
+		Route::get('/detail/biblio/{id}', 'Operator\DataMaster\BiblioController@show')->name('operator.biblio.detail')->middleware('IsOperator');
 		//Export
-		Route::get('/export/excel', 'Operator\DataMaster\BiblioController@export')->name('operator.biblio.export');
+		Route::get('/export/excel', 'Operator\DataMaster\BiblioController@export')->name('operator.biblio.export')->middleware('IsOperator');
 		//Import
-		Route::post('/import/excel', 'Operator\DataMaster\BiblioController@import')->name('operator.biblio.import.excel');
+		Route::post('/import/excel', 'Operator\DataMaster\BiblioController@import')->name('operator.biblio.import.excel')->middleware('IsOperator');
 		//delete 
-		Route::post('/hapus/{id}', 'Operator\DataMaster\BiblioController@delete')->name('operator.biblio.hapus');
+		Route::post('/hapus/{id}', 'Operator\DataMaster\BiblioController@delete')->name('operator.biblio.hapus')->middleware('IsOperator');
 		//datatable riwayat biblio
-		Route::get('/riwayat/datatable', 'Operator\DataMaster\BiblioController@riwayatdatatable')->name('operator.biblio.riwayat.datatable');
+		Route::get('/riwayat/datatable', 'Operator\DataMaster\BiblioController@riwayatdatatable')->name('operator.biblio.riwayat.datatable')->middleware('IsOperator');
 	});
 	
 	// Operator : Data Pendukung
 	Route::prefix('datapendukung')->group(function() {
 
 			// DataPendukung-Anggota
-			Route::get('/anggota', 'Operator\DataPendukung\AnggotaPendukungController@anggotaPendukung')->name('operator.anggota.pendukung');
+			Route::get('/anggota', 'Operator\DataPendukung\AnggotaPendukungController@anggotaPendukung')->name('operator.anggota.pendukung')->middleware('IsOperator');
 
 			// DataTable-Pendukung Anggota
-			Route::get('/datatable/tipe-anggota', 'Operator\DataPendukung\AnggotaPendukungController@tipeAnggotaDatatable')->name('operator.pendukung.datatable.tipeAnggota'); 
-			Route::get('/datatable/jurusan', 'Operator\DataPendukung\AnggotaPendukungController@jurusanDatatable')->name('operator.pendukung.datatable.jurusan'); 
-			Route::get('/datatable/kelas', 'Operator\DataPendukung\AnggotaPendukungController@kelasDatatable')->name('operator.pendukung.datatable.kelas'); 
+			Route::get('/datatable/tipe-anggota', 'Operator\DataPendukung\AnggotaPendukungController@tipeAnggotaDatatable')->name('operator.pendukung.datatable.tipeAnggota')->middleware('IsOperator'); 
+			Route::get('/datatable/jurusan', 'Operator\DataPendukung\AnggotaPendukungController@jurusanDatatable')->name('operator.pendukung.datatable.jurusan')->middleware('IsOperator'); 
+			Route::get('/datatable/kelas', 'Operator\DataPendukung\AnggotaPendukungController@kelasDatatable')->name('operator.pendukung.datatable.kelas')->middleware('IsOperator'); 
 
 			// Ubah DataPendukung
-			Route::get('/ubah/anggota-tipe/{id}', 'Operator\DataPendukung\AnggotaPendukungController@ubahAnggotaTipe')->name('operator.ubah.anggota.tipe');
-			Route::get('/ubah/jurusan/{id}', 'Operator\DataPendukung\AnggotaPendukungController@ubahJurusan')->name('operator.ubah.jurusan');
-			Route::get('/ubah/kelas/{id}', 'Operator\DataPendukung\AnggotaPendukungController@ubahKelas')->name('operator.ubah.kelas');
+			Route::get('/ubah/anggota-tipe/{id}', 'Operator\DataPendukung\AnggotaPendukungController@ubahAnggotaTipe')->name('operator.ubah.anggota.tipe')->middleware('IsOperator');
+			Route::get('/ubah/jurusan/{id}', 'Operator\DataPendukung\AnggotaPendukungController@ubahJurusan')->name('operator.ubah.jurusan')->middleware('IsOperator');
+			Route::get('/ubah/kelas/{id}', 'Operator\DataPendukung\AnggotaPendukungController@ubahKelas')->name('operator.ubah.kelas')->middleware('IsOperator');
 
 			// Store DataPendukung
-			Route::post('/store/data-pendukung/anggota-tipe', 'Operator\DataPendukung\AnggotaPendukungController@storeDatapendukungTipe')->name('operator.store.DataPendukung.tipe');
-			Route::post('/store/data-pendukung/jurusan', 'Operator\DataPendukung\AnggotaPendukungController@storeDatapendukungJurusan')->name('operator.store.DataPendukung.jurusan');
-			Route::post('/store/data-pendukung/kelas', 'Operator\DataPendukung\AnggotaPendukungController@storeDatapendukungKelas')->name('operator.store.DataPendukung.kelas');
+			Route::post('/store/data-pendukung/anggota-tipe', 'Operator\DataPendukung\AnggotaPendukungController@storeDatapendukungTipe')->name('operator.store.DataPendukung.tipe')->middleware('IsOperator');
+			Route::post('/store/data-pendukung/jurusan', 'Operator\DataPendukung\AnggotaPendukungController@storeDatapendukungJurusan')->name('operator.store.DataPendukung.jurusan')->middleware('IsOperator');
+			Route::post('/store/data-pendukung/kelas', 'Operator\DataPendukung\AnggotaPendukungController@storeDatapendukungKelas')->name('operator.store.DataPendukung.kelas')->middleware('IsOperator');
 
 			// Akhir Data Pendukung Anggota
 
 			//Biblio
-			Route::get('/', 'Operator\DataPendukung\BiblioPendukungController@index')->name('operator.pendukung.biblio');
+			Route::get('/', 'Operator\DataPendukung\BiblioPendukungController@index')->name('operator.pendukung.biblio')->middleware('IsOperator');
 			
 			//Datatables
-			Route::get('/datatable/penulis', 'Operator\DataPendukung\BiblioPendukungController@penulisdatatable')->name('operator.pendukung.datatable.penulis');
-			Route::get('/datatable/penerbit', 'Operator\DataPendukung\BiblioPendukungController@penerbitdatatable')->name('operator.pendukung.datatable.penerbit');
-			Route::get('/datatable/statusitem', 'Operator\DataPendukung\BiblioPendukungController@statusitemdatatable')->name('operator.pendukung.datatable.statusitem');
-			Route::get('/datatable/sumberitem', 'Operator\DataPendukung\BiblioPendukungController@sumberitemdatatable')->name('operator.pendukung.datatable.sumberitem');
-			Route::get('/datatable/tipekoleksi', 'Operator\DataPendukung\BiblioPendukungController@tipekoleksidatatable')->name('operator.pendukung.datatable.tipekoleksi');
-			Route::get('/datatable/klasifikasi', 'Operator\DataPendukung\BiblioPendukungController@klasifikasidatatable')->name('operator.pendukung.datatable.klasifikasi');
-			Route::get('/datatable/statussirkulasi', 'Operator\DataPendukung\BiblioPendukungController@statussirkulasidatatable')->name('operator.pendukung.datatable.statussirkulasi');
+			Route::get('/datatable/penulis', 'Operator\DataPendukung\BiblioPendukungController@penulisdatatable')->name('operator.pendukung.datatable.penulis')->middleware('IsOperator');
+			Route::get('/datatable/penerbit', 'Operator\DataPendukung\BiblioPendukungController@penerbitdatatable')->name('operator.pendukung.datatable.penerbit')->middleware('IsOperator');
+			Route::get('/datatable/statusitem', 'Operator\DataPendukung\BiblioPendukungController@statusitemdatatable')->name('operator.pendukung.datatable.statusitem')->middleware('IsOperator');
+			Route::get('/datatable/sumberitem', 'Operator\DataPendukung\BiblioPendukungController@sumberitemdatatable')->name('operator.pendukung.datatable.sumberitem')->middleware('IsOperator');
+			Route::get('/datatable/tipekoleksi', 'Operator\DataPendukung\BiblioPendukungController@tipekoleksidatatable')->name('operator.pendukung.datatable.tipekoleksi')->middleware('IsOperator');
+			Route::get('/datatable/klasifikasi', 'Operator\DataPendukung\BiblioPendukungController@klasifikasidatatable')->name('operator.pendukung.datatable.klasifikasi')->middleware('IsOperator');
+			Route::get('/datatable/statussirkulasi', 'Operator\DataPendukung\BiblioPendukungController@statussirkulasidatatable')->name('operator.pendukung.datatable.statussirkulasi')->middleware('IsOperator');
 			
 			//Proses Data
-			Route::post('/biblio/penulis/proses', 'Operator\DataPendukung\BiblioPendukungController@storePenulis')->name('operator.pendukung.biblio.penulis.proses');
-			Route::post('/biblio/penerbit/proses', 'Operator\DataPendukung\BiblioPendukungController@storePenerbit')->name('operator.pendukung.biblio.penerbit.proses');
-			Route::post('biblio/klasifikasi/proses', 'Operator\DataPendukung\BiblioPendukungController@storeKlasifikasi')->name('operator.pendukung.biblio.klasifikasi.proses');
-			Route::post('/biblio/tipekoleksi/proses', 'Operator\DataPendukung\BiblioPendukungController@storeTipekoleksi')->name('operator.pendukung.biblio.tipekoleksi.proses');
-			Route::post('/biblio/statusitem/proses', 'Operator\DataPendukung\BiblioPendukungController@storeStatusitem')->name('operator.pendukung.biblio.statusitem.proses');
-			Route::post('/biblio/sumberitem/proses', 'Operator\DataPendukung\BiblioPendukungController@storeSumberitem')->name('operator.pendukung.biblio.sumberitem.proses');
-			Route::post('/biblio/statussirkulasi/proses', 'Operator\DataPendukung\BiblioPendukungController@storeStatusSirkulasi')->name('operator.pendukung.biblio.statussirkulasi.proses');
+			Route::post('/biblio/penulis/proses', 'Operator\DataPendukung\BiblioPendukungController@storePenulis')->name('operator.pendukung.biblio.penulis.proses')->middleware('IsOperator');
+			Route::post('/biblio/penerbit/proses', 'Operator\DataPendukung\BiblioPendukungController@storePenerbit')->name('operator.pendukung.biblio.penerbit.proses')->middleware('IsOperator');
+			Route::post('biblio/klasifikasi/proses', 'Operator\DataPendukung\BiblioPendukungController@storeKlasifikasi')->name('operator.pendukung.biblio.klasifikasi.proses')->middleware('IsOperator');
+			Route::post('/biblio/tipekoleksi/proses', 'Operator\DataPendukung\BiblioPendukungController@storeTipekoleksi')->name('operator.pendukung.biblio.tipekoleksi.proses')->middleware('IsOperator');
+			Route::post('/biblio/statusitem/proses', 'Operator\DataPendukung\BiblioPendukungController@storeStatusitem')->name('operator.pendukung.biblio.statusitem.proses')->middleware('IsOperator');
+			Route::post('/biblio/sumberitem/proses', 'Operator\DataPendukung\BiblioPendukungController@storeSumberitem')->name('operator.pendukung.biblio.sumberitem.proses')->middleware('IsOperator');
+			Route::post('/biblio/statussirkulasi/proses', 'Operator\DataPendukung\BiblioPendukungController@storeStatusSirkulasi')->name('operator.pendukung.biblio.statussirkulasi.proses')->middleware('IsOperator');
 			
 			//ubah data
-			Route::get('/biblio/penulis/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editPenulis')->name('operator.pendukung.biblio.penulis.edit');
-			Route::get('/biblio/penerbit/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editPenerbit')->name('operator.pendukung.biblio.penerbit.edit');
-			Route::get('/biblio/klasifikasi/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editKlasifikasi')->name('operator.pendukung.biblio.klasifikasi.edit');
-			Route::get('/biblio/klasifikasi/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editKlasifikasi')->name('operator.pendukung.biblio.klasifikasi.edit');
-			Route::get('/biblio/tipekoleksi/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editTipekoleksi')->name('operator.pendukung.biblio.tipekoleksi.edit');
-			Route::get('/biblio/sumberitem/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editSumberitem')->name('operator.pendukung.biblio.sumberitem.edit');
-			Route::get('/biblio/statusitem/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editStatusitem')->name('operator.pendukung.biblio.statusitem.edit');
-			Route::get('/biblio/statussirkulasi/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editStatussirkulasi')->name('operator.pendukung.biblio.statussirkulasi.edit');
+			Route::get('/biblio/penulis/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editPenulis')->name('operator.pendukung.biblio.penulis.edit')->middleware('IsOperator');
+			Route::get('/biblio/penerbit/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editPenerbit')->name('operator.pendukung.biblio.penerbit.edit')->middleware('IsOperator');
+			Route::get('/biblio/klasifikasi/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editKlasifikasi')->name('operator.pendukung.biblio.klasifikasi.edit')->middleware('IsOperator');
+			Route::get('/biblio/klasifikasi/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editKlasifikasi')->name('operator.pendukung.biblio.klasifikasi.edit')->middleware('IsOperator');
+			Route::get('/biblio/tipekoleksi/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editTipekoleksi')->name('operator.pendukung.biblio.tipekoleksi.edit')->middleware('IsOperator');
+			Route::get('/biblio/sumberitem/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editSumberitem')->name('operator.pendukung.biblio.sumberitem.edit')->middleware('IsOperator');
+			Route::get('/biblio/statusitem/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editStatusitem')->name('operator.pendukung.biblio.statusitem.edit')->middleware('IsOperator');
+			Route::get('/biblio/statussirkulasi/ubah/{id}', 'Operator\DataPendukung\BiblioPendukungController@editStatussirkulasi')->name('operator.pendukung.biblio.statussirkulasi.edit')->middleware('IsOperator');
 			
 			//Datatables riwayat
-			Route::get('/biblio/riwayat/datatables/penulis', 'Operator\DataPendukung\BiblioPendukungController@penulisRiwayatData')->name('operator.pendukung.biblio.penulis.datatables.riwayat');
-			Route::get('biblio/riwayat/datatables/penerbit', 'Operator\DataPendukung\BiblioPendukungController@penerbitRiwayatData')->name('operator.pendukung.biblio.penerbit.datatables.riwayat');
-			Route::get('biblio/riwayat/datatables/statusitem', 'Operator\DataPendukung\BiblioPendukungController@statusitemRiwayatData')->name('operator.pendukung.biblio.statusitem.datatables.riwayat');
-			Route::get('biblio/riwayat/datatables/sumberitem', 'Operator\DataPendukung\BiblioPendukungController@sumberitemRiwayatData')->name('operator.pendukung.biblio.sumberitem.datatables.riwayat');
-			Route::get('biblio/riwayat/datatables/klasifikasi', 'Operator\DataPendukung\BiblioPendukungController@klasifikasiRiwayatData')->name('operator.pendukung.biblio.klasifikasi.datatables.riwayat');
-			Route::get('biblio/riwayat/datatables/tipekoleksi', 'Operator\DataPendukung\BiblioPendukungController@tipekoleksiRiwayatData')->name('operator.pendukung.biblio.tipekoleksi.datatables.riwayat');
-			Route::get('biblio/riwayat/datatables/statussirkulasi', 'Operator\DataPendukung\BiblioPendukungController@statussirkulasiRiwayatData')->name('operator.pendukung.biblio.statussirkulasi.datatables.riwayat');
+			Route::get('/biblio/riwayat/datatables/penulis', 'Operator\DataPendukung\BiblioPendukungController@penulisRiwayatData')->name('operator.pendukung.biblio.penulis.datatables.riwayat')->middleware('IsOperator');
+			Route::get('biblio/riwayat/datatables/penerbit', 'Operator\DataPendukung\BiblioPendukungController@penerbitRiwayatData')->name('operator.pendukung.biblio.penerbit.datatables.riwayat')->middleware('IsOperator');
+			Route::get('biblio/riwayat/datatables/statusitem', 'Operator\DataPendukung\BiblioPendukungController@statusitemRiwayatData')->name('operator.pendukung.biblio.statusitem.datatables.riwayat')->middleware('IsOperator');
+			Route::get('biblio/riwayat/datatables/sumberitem', 'Operator\DataPendukung\BiblioPendukungController@sumberitemRiwayatData')->name('operator.pendukung.biblio.sumberitem.datatables.riwayat')->middleware('IsOperator');
+			Route::get('biblio/riwayat/datatables/klasifikasi', 'Operator\DataPendukung\BiblioPendukungController@klasifikasiRiwayatData')->name('operator.pendukung.biblio.klasifikasi.datatables.riwayat')->middleware('IsOperator');
+			Route::get('biblio/riwayat/datatables/tipekoleksi', 'Operator\DataPendukung\BiblioPendukungController@tipekoleksiRiwayatData')->name('operator.pendukung.biblio.tipekoleksi.datatables.riwayat')->middleware('IsOperator');
+			Route::get('biblio/riwayat/datatables/statussirkulasi', 'Operator\DataPendukung\BiblioPendukungController@statussirkulasiRiwayatData')->name('operator.pendukung.biblio.statussirkulasi.datatables.riwayat')->middleware('IsOperator');
 
 			// Hapus
-			Route::post('/hapus/penulis/{id}', 'Operator\DataPendukung\BiblioPendukungController@deletePenulis')->name('operator.pendukung.penulis.hapus');
-			Route::post('/hapus/penerbit/{id}', 'Operator\DataPendukung\BiblioPendukungController@deletePenerbit')->name('operator.pendukung.penerbit.hapus');
-			Route::post('/hapus/klasifikasi/{id}', 'Operator\DataPendukung\BiblioPendukungController@deleteKlasifikasi')->name('operator.pendukung.klasifikasi.hapus');
-			Route::post('/hapus/statusitem/{id}', 'Operator\DataPendukung\BiblioPendukungController@deleteStatusItem')->name('operator.pendukung.statusitem.hapus');
-			Route::post('/hapus/statusirkulasi/{id}', 'Operator\DataPendukung\BiblioPendukungController@deleteStatusSirkulasi')->name('operator.pendukung.statussirkulasi.hapus');
-			Route::post('/hapus/sumberitem/{id}', 'Operator\DataPendukung\BiblioPendukungController@deleteSumberItem')->name('operator.pendukung.sumberitem.hapus');
-			Route::post('/hapus/tipekoleksi/{id}', 'Operator\DataPendukung\BiblioPendukungController@deleteTipeKoleksi')->name('operator.pendukung.tipekoleksi.hapus');
+			Route::post('/hapus/penulis/{id}', 'Operator\DataPendukung\BiblioPendukungController@deletePenulis')->name('operator.pendukung.penulis.hapus')->middleware('IsOperator');
+			Route::post('/hapus/penerbit/{id}', 'Operator\DataPendukung\BiblioPendukungController@deletePenerbit')->name('operator.pendukung.penerbit.hapus')->middleware('IsOperator');
+			Route::post('/hapus/klasifikasi/{id}', 'Operator\DataPendukung\BiblioPendukungController@deleteKlasifikasi')->name('operator.pendukung.klasifikasi.hapus')->middleware('IsOperator');
+			Route::post('/hapus/statusitem/{id}', 'Operator\DataPendukung\BiblioPendukungController@deleteStatusItem')->name('operator.pendukung.statusitem.hapus')->middleware('IsOperator');
+			Route::post('/hapus/statusirkulasi/{id}', 'Operator\DataPendukung\BiblioPendukungController@deleteStatusSirkulasi')->name('operator.pendukung.statussirkulasi.hapus')->middleware('IsOperator');
+			Route::post('/hapus/sumberitem/{id}', 'Operator\DataPendukung\BiblioPendukungController@deleteSumberItem')->name('operator.pendukung.sumberitem.hapus')->middleware('IsOperator');
+			Route::post('/hapus/tipekoleksi/{id}', 'Operator\DataPendukung\BiblioPendukungController@deleteTipeKoleksi')->name('operator.pendukung.tipekoleksi.hapus')->middleware('IsOperator');
 		// Akhir Biblio
 	});
 
@@ -221,62 +221,62 @@ Route::prefix('operator')->group(function(){
 	// Sirkulasi
 	Route::prefix('sirkulasi')->group(function(){
 		// Peminjaman
-		Route::get('/', 'Operator\DataSirkulasi\SirkulasiController@peminjaman')->name('operator.sirkulasi');
-		Route::get('/perpanjangan/{id}', 'Operator\DataSirkulasi\SirkulasiController@perpanjangan')->name('operator.sirkulasi.perpanjangan');
-		Route::post('/perpanjangan/update/{id}', 'Operator\DataSirkulasi\SirkulasiController@perpanjanganProses')->name('operator.sirkulasi.perpanjangan.proses');
-		Route::post('/peminjaman/proses', 'Operator\DataSirkulasi\SirkulasiController@peminjamanProses')->name('operator.sirkulasi.peminjaman.proses');
+		Route::get('/', 'Operator\DataSirkulasi\SirkulasiController@peminjaman')->name('operator.sirkulasi')->middleware('IsOperator');
+		Route::get('/perpanjangan/{id}', 'Operator\DataSirkulasi\SirkulasiController@perpanjangan')->name('operator.sirkulasi.perpanjangan')->middleware('IsOperator');
+		Route::post('/perpanjangan/update/{id}', 'Operator\DataSirkulasi\SirkulasiController@perpanjanganProses')->name('operator.sirkulasi.perpanjangan.proses')->middleware('IsOperator');
+		Route::post('/peminjaman/proses', 'Operator\DataSirkulasi\SirkulasiController@peminjamanProses')->name('operator.sirkulasi.peminjaman.proses')->middleware('IsOperator');
 		// Search Ajax
-		Route::get('/search/anggota', 'Operator\DataSirkulasi\SirkulasiController@searchAnggota')->name('operator.sirkulasi.search.anggota');
-		Route::get('/search/biblio', 'Operator\DataSirkulasi\SirkulasiController@searchBiblio');
+		Route::get('/search/anggota', 'Operator\DataSirkulasi\SirkulasiController@searchAnggota')->name('operator.sirkulasi.search.anggota')->middleware('IsOperator');
+		Route::get('/search/biblio', 'Operator\DataSirkulasi\SirkulasiController@searchBiblio')->middleware('IsOperator');
 		// Pengembalian
-		Route::get('/search/biblio/back', 'Operator\DataSirkulasi\SirkulasiController@searchBiblioBack')->name('operator.sirkulasi.searchbiblio.kembali');
-		Route::post('/pengembalian/proses', 'Operator\DataSirkulasi\SirkulasiController@pengembalianProses')->name('operator.sirkulasi.pengembalian.proses');
+		Route::get('/search/biblio/back', 'Operator\DataSirkulasi\SirkulasiController@searchBiblioBack')->name('operator.sirkulasi.searchbiblio.kembali')->middleware('IsOperator');
+		Route::post('/pengembalian/proses', 'Operator\DataSirkulasi\SirkulasiController@pengembalianProses')->name('operator.sirkulasi.pengembalian.proses')->middleware('IsOperator');
 		// Riwayat Datatable
-		Route::get('/riwayat/peminjaman', 'Operator\DataSirkulasi\SirkulasiController@riwayatPeminjaman')->name('operator.sirkulasi.riwayat.peminjaman');
-		Route::get('/riwayat/pengembalian', 'Operator\DataSirkulasi\SirkulasiController@riwayatPengembalian')->name('operator.sirkulasi.riwayat.pengembalian');
+		Route::get('/riwayat/peminjaman', 'Operator\DataSirkulasi\SirkulasiController@riwayatPeminjaman')->name('operator.sirkulasi.riwayat.peminjaman')->middleware('IsOperator');
+		Route::get('/riwayat/pengembalian', 'Operator\DataSirkulasi\SirkulasiController@riwayatPengembalian')->name('operator.sirkulasi.riwayat.pengembalian')->middleware('IsOperator');
 	});
 
 	// Novel
 	Route::prefix('novel')->group(function(){
 		// Data Novel
-		Route::get('/', 'Operator\NovelController@index')->name('operator.novel');
-		Route::get('/datatable', 'Operator\NovelController@createDatatable')->name('operator.novel.datatable');
-		Route::post('/update', 'Operator\NovelController@store')->name('operator.novel.store');
-		Route::get('/detail/{id}', 'Operator\NovelController@edit')->name('operator.novel.edit');
-		Route::post('/konfirmasi/{id}', 'Operator\NovelController@konfirmasi')->name('operator.novel.konfirmasi');
-		Route::delete('/hapus/{id}', 'Operator\NovelController@destroy')->name('operator.novel.hapus');
+		Route::get('/', 'Operator\NovelController@index')->name('operator.novel')->middleware('IsOperator');
+		Route::get('/datatable', 'Operator\NovelController@createDatatable')->name('operator.novel.datatable')->middleware('IsOperator');
+		Route::post('/update', 'Operator\NovelController@store')->name('operator.novel.store')->middleware('IsOperator');
+		Route::get('/detail/{id}', 'Operator\NovelController@edit')->name('operator.novel.edit')->middleware('IsOperator');
+		Route::post('/konfirmasi/{id}', 'Operator\NovelController@konfirmasi')->name('operator.novel.konfirmasi')->middleware('IsOperator');
+		Route::delete('/hapus/{id}', 'Operator\NovelController@destroy')->name('operator.novel.hapus')->middleware('IsOperator');
 	});
 
 	// Cerpen
 	Route::prefix('cerpen')->group(function(){
 		// Data Cerpen
-		Route::get('/', 'Operator\CerpenController@index')->name('operator.cerpen');
-		Route::get('/datatable', 'Operator\CerpenController@createDatatable')->name('operator.cerpen.datatable');
-		Route::post('/update', 'Operator\CerpenController@store')->name('operator.cerpen.store');
-		Route::get('/detail/{id}', 'Operator\CerpenController@edit')->name('operator.cerpen.edit');
-		Route::post('/konfirmasi/{id}', 'Operator\CerpenController@konfirmasi')->name('operator.cerpen.konfirmasi');
-		Route::delete('/hapus/{id}', 'Operator\CerpenController@destroy')->name('operator.cerpen.hapus');
+		Route::get('/', 'Operator\CerpenController@index')->name('operator.cerpen')->middleware('IsOperator');
+		Route::get('/datatable', 'Operator\CerpenController@createDatatable')->name('operator.cerpen.datatable')->middleware('IsOperator');
+		Route::post('/update', 'Operator\CerpenController@store')->name('operator.cerpen.store')->middleware('IsOperator');
+		Route::get('/detail/{id}', 'Operator\CerpenController@edit')->name('operator.cerpen.edit')->middleware('IsOperator');
+		Route::post('/konfirmasi/{id}', 'Operator\CerpenController@konfirmasi')->name('operator.cerpen.konfirmasi')->middleware('IsOperator');
+		Route::delete('/hapus/{id}', 'Operator\CerpenController@destroy')->name('operator.cerpen.hapus')->middleware('IsOperator');
 	});
 
 	// Cerpen
 	Route::prefix('puisi')->group(function(){
 		// Data Puisi
-		Route::get('/', 'Operator\PuisiController@index')->name('operator.puisi');
-		Route::get('/datatable', 'Operator\PuisiController@createDatatable')->name('operator.puisi.datatable');
-		Route::post('/update', 'Operator\PuisiController@store')->name('operator.puisi.store');
-		Route::get('/detail/{id}', 'Operator\PuisiController@edit')->name('operator.puisi.edit');
-		Route::post('/konfirmasi/{id}', 'Operator\PuisiController@konfirmasi')->name('operator.puisi.konfirmasi');
-		Route::delete('/hapus/{id}', 'Operator\PuisiController@destroy')->name('operator.puisi.hapus');
+		Route::get('/', 'Operator\PuisiController@index')->name('operator.puisi')->middleware('IsOperator');
+		Route::get('/datatable', 'Operator\PuisiController@createDatatable')->name('operator.puisi.datatable')->middleware('IsOperator');
+		Route::post('/update', 'Operator\PuisiController@store')->name('operator.puisi.store')->middleware('IsOperator');
+		Route::get('/detail/{id}', 'Operator\PuisiController@edit')->name('operator.puisi.edit')->middleware('IsOperator');
+		Route::post('/konfirmasi/{id}', 'Operator\PuisiController@konfirmasi')->name('operator.puisi.konfirmasi')->middleware('IsOperator');
+		Route::delete('/hapus/{id}', 'Operator\PuisiController@destroy')->name('operator.puisi.hapus')->middleware('IsOperator');
 	});
 
 	// Resume
 	Route::prefix('resume')->group(function(){
 		// Data Resume
-		Route::get('/', 'Operator\ResumeController@index')->name('operator.resume');
-		Route::get('/datatable', 'Operator\ResumeController@createDatatable')->name('operator.resume.datatable');
-		Route::get('/edit/{id}', 'Operator\ResumeController@edit')->name('operator.resume.edit');
-		Route::post('/update', 'Operator\ResumeController@store')->name('operator.resume.store');
-		Route::delete('/hapus/{id}', 'Operator\ResumeController@destroy')->name('operator.resume.hapus');
+		Route::get('/', 'Operator\ResumeController@index')->name('operator.resume')->middleware('IsOperator');
+		Route::get('/datatable', 'Operator\ResumeController@createDatatable')->name('operator.resume.datatable')->middleware('IsOperator');
+		Route::get('/edit/{id}', 'Operator\ResumeController@edit')->name('operator.resume.edit')->middleware('IsOperator');
+		Route::post('/update', 'Operator\ResumeController@store')->name('operator.resume.store')->middleware('IsOperator');
+		Route::delete('/hapus/{id}', 'Operator\ResumeController@destroy')->name('operator.resume.hapus')->middleware('IsOperator');
 	});
 
 });

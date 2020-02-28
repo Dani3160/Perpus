@@ -15,7 +15,7 @@ Baca Cerpen
 
     <p style="font-size: 15px;">Karya : {{$cerpen->cerpen_karya}}</p>
     
-    <img src="{{asset('user/image/default.jpg')}}" class="img-responsive" alt="">
+    <img src="/user/image/cerpen/{{$cerpen->cerpen_gambar}}" class="img-fluid" alt="">
 
     <p class="mt-4">{{$cerpen->cerpen_isi}}</p>    
     

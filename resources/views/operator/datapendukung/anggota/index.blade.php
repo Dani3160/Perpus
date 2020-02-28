@@ -11,6 +11,38 @@
 	</div>
 </div>
 
+<div class="col-md-12 mt-3 mb-3">
+	<div class="row">
+		<div class="col-md-8"></div>
+		
+		<div class="col-md-4 float-right">
+			@if ($message = Session::get('success'))
+			<div class="toast" data-autohide="false">
+				<div class="toast-header">
+					<strong class="mr-auto text-primary">Sukses</strong>
+					<small class="text-muted">Baru saja</small>
+					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+				</div>
+				<div class="toast-body">
+					<strong class="text-success">{{$message}}</strong>
+				</div>
+			</div>
+			<!-- <div class="alert alert-success alert-block">
+				<button type="button" class="close" data-dismiss="alert">×</button> 
+				<strong>{{ $message }}</strong>
+			</div> -->
+			@endif
+
+			@if ($message = Session::get('error'))
+				<div class="alert alert-danger alert-block">
+					<button type="button" class="close" data-dismiss="alert">×</button> 
+					<strong>{{ $message }}</strong>
+				</div>
+			@endif
+		</div>
+	</div>
+</div>
+
 <div id="listpendukung" class="tabcontent">
 	<div class="row mt-4 mb-5">
 		{{-- Tabel Jurusan --}}
@@ -113,6 +145,12 @@
 
 
 @push('scripts')
+<script>
+$(document).ready(function(){
+    $('.toast').toast('show', 1500);
+});
+</script>
+
 <script type="text/javascript">
 	function openTabs(evt, cityName) {
 	var i, tabcontent, tablinks;

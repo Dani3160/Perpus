@@ -9,11 +9,11 @@
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
 			<div class="row">
-				<div class="col-lg-5"></div>
+				<div class="col-lg-5" style="background: url('/image/logo/log.png'); background-size: cover;"></div>
 				<div class="col-lg-7">
 					<div class="p-5">
 						<div class="text-center">
-							<h1 class="h4 text-gray-900 mb-4">Daftar Akun</h1>
+							<h1 class="h4 text-gray-900 mb-5" style="font-weight:bold;">Daftar Akun</h1>
 						</div>
 						<form action="{{route('post-daftar')}}" method="POST" class="user">
 						@csrf

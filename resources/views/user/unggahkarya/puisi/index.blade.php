@@ -11,7 +11,7 @@ Puisi
  
 @section('konten')
 
-<h5 class="mb-4" style="font-weight: bold;">Puisi ( Cerita Pendek )</h5>
+<h5 class="mb-4" style="font-weight: bold;color:#000;">Baca Puisi ( Cerita Pendek )</h5>
 
 @if($count > 0)
 
@@ -21,10 +21,10 @@ Puisi
     <div class="card-body">
         
         
-        <h4 style="font-weight: bold;">{{$n->puisi_judul}}</h4>
+        <h4 style="font-weight: bold;color:#000;">{{$n->puisi_judul}}</h4>
         
-        <p class="mb-0" style="font-size: 15px;">Karya : {{$n->puisi_karya}}</p>
-        <p style="font-size: 15px;">Postingan : {{$n->name}}</p>
+        <p class="mb-0" style="font-size: 15px;color:#000;">Karya : {{$n->puisi_karya}}</p>
+        <p style="font-size: 15px;color:#000;">Postingan : {{$n->name}}</p>
         <a href="{{route('user.baca.puisi', $n->puisi_id)}}" class="btn btn-info float-right btn-sm"><i class="fas fa-search"></i> Baca Sekarang</a>    
     </div>
 </div>

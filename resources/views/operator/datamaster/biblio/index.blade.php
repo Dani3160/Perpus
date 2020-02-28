@@ -13,6 +13,30 @@ Biblio - Operator
 		<button class="tablinks" onclick="openTabs(event, 'import')">Import Data</button>
 		<button class="tablinks" onclick="openTabs(event, 'riwayat')">Riwayat</button>
 	</div>
+</div>
+
+	<div class="col-md-12 mt-3 mb-3">
+		<div class="row">
+			<div class="col-md-8"></div>
+			
+			<div class="col-md-4 float-right">
+			@if(Session::has('berhasil'))
+				<div class="toast" data-autohide="false">
+					<div class="toast-header">
+						<strong class="mr-auto text-primary">Sukses</strong>
+						<small class="text-muted">Baru saja</small>
+						<button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+					</div>
+					<div class="toast-body">
+						<strong class="text-success">{{Session::get('berhasil')}}</strong>
+					</div>
+				</div>
+			
+				@endif
+			</div>
+		</div>
+	</div>
+
 		<!-- Tampil Biblio -->
 		<div id="list-tabel" class="tabcontent">
 			<div class="col-md-12">
@@ -250,10 +274,15 @@ Biblio - Operator
 		<!-- Akhir Riwayat Biblio -->
 		
 		
-</div>
+
 {{-- Batas Akhir Area Konten --}}
 @stop
 @push('scripts')
+<script>
+$(document).ready(function(){
+    $('.toast').toast('show', 1500);
+});
+</script>
 <script type="text/javascript">
 	$(function(){
 		$('#biblio').DataTable({

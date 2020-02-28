@@ -23,11 +23,11 @@
   <!-- Jquery UI -->
   <link href="{{asset('operator/css/jquery-ui.min.css')}}" rel="stylesheet">
   <!-- Autocomplete -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+  <link href="{{asset('operator/css/select2.min.css')}}" rel="stylesheet" />
   <style>
   .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
+  border: 1px solid #309fe6;
   border-top: none;
   border-right: none;
   border-left: none;
@@ -53,7 +53,8 @@
 
   /* Create an active/current tablink class */
   .tab button.active {
-    background-color: #2f56c8;
+    border-radius: 25px;
+    background-image:linear-gradient(180deg,#4e73df 10%,#17c0eb 100%);
     color: #fff;
   }
 
@@ -78,7 +79,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="{{asset('image/logo/Logofix.png')}}" alt="" width="50">
+          <img src="{{asset('image/logo/log.png')}}" alt="" width="50">
         </div>
         <div class="sidebar-brand-text mx-3">nurisperpus</div>
       </a>
@@ -249,7 +250,7 @@
   <script src="{{asset('operator/js/jquery-ui.min.js')}}"></script>
 
   <!-- Autocomplete -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+  <script src="{{asset('operator/js/select2.min.js')}}"></script>
 
   <!-- Tanggal -->
   <script src="{{asset('operator/js/tanggal.js')}}"></script>

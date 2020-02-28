@@ -27,15 +27,6 @@ class SirkulasiController extends Controller
     
     public function peminjaman()
     {
-        // if(Session::get('login-pengguna')){
-		// 	return redirect()->back();
-		// }
-		// if(Session::get('login-operator')){
-		// 	return redirect()->back();
-		// }
-		// if(Session::get('login-admin')){
-		// 	return redirect()->back();
-		// }
         $anggota = User::all();
         $status = StatusSirkulasi::where('status_sirkulasi_nama', '=', 'Peminjaman')->get();
         $status2 = StatusSirkulasi::where('status_sirkulasi_nama', '=', 'Pengembalian')->get();
@@ -99,7 +90,7 @@ class SirkulasiController extends Controller
         $b = DB::table('status_item')->where('status_item_nama', '=', 'Dipinjam')->get()->first();
         $biblio->status_item_id = $b->status_item_id;
         $biblio->save();
-        return redirect()->route('operator.sirkulasi');
+        return redirect()->route('operator.sirkulasi')->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
     // Akhir Peminjaman
@@ -110,7 +101,10 @@ class SirkulasiController extends Controller
     {
         if ($request->has('q')) {
             $cari = $request->q;
-            $data = DB::table('users')->select('id', 'name')->where('role', '=', 'Siswa', 'AND', 'name', 'LIKE', '%'.$cari.'%')->get();
+            $data = DB::table('users')
+                        ->join('kelas', 'kelas.kelas_id', 'users.kelas_id')
+                        ->select('id', 'name', 'kelas.*')
+                        ->where('role', '=', 'Siswa', 'AND', 'name', 'LIKE', '%'.$cari.'%')->get();
             return response()->json($data);
         }
     }
@@ -170,7 +164,7 @@ class SirkulasiController extends Controller
         $sirkulasi->kembali_pinjam = date('Y-'.+$c. '-'.+$b);
         $sirkulasi->status_sirkulasi_id = $request->status_sirkulasi_id;
         $sirkulasi->save();
-        return redirect()->route('operator.sirkulasi');
+        return redirect()->route('operator.sirkulasi')->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
     // Akhir Perpanjangan
@@ -233,7 +227,7 @@ class SirkulasiController extends Controller
         $b = DB::table('status_item')->where('status_item_nama', '=', 'Tersedia')->get()->first();
         $biblio->status_item_id = $b->status_item_id;
         $biblio->save();
-        return redirect()->route('operator.sirkulasi');
+        return redirect()->route('operator.sirkulasi')->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
     // Akhir Pengembalian

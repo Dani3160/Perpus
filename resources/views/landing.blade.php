@@ -94,7 +94,7 @@
 
     <!--hero section start-->
     <section class="hero-section pt-100 background-img"
-             style="background: url('landing/img/app-hero-bg.jpg')no-repeat center center / cover">
+             style="background: url('/image/landing.png')no-repeat center center / cover">
         <div class="container">
             <div class="row align-items-center justify-content-between py-5">
                 <div class="col-md-7 col-lg-6">
@@ -107,7 +107,7 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="hero-animation-img">
-                        <img src="{{asset('landing/img/app-product.png')}}" alt="app" class="img-fluid">
+                        <img src="{{asset('image/app.png')}}" alt="app" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -235,12 +235,12 @@
             <div class="screen-slider-content mt-5">
                 <div class="screenshot-frame"></div>
                 <div class="screen-carousel owl-carousel owl-theme dot-indicator">
-                    <img src="{{asset('landing/img/01.png')}}" class="img-fluid" alt="screenshots">
-                    <img src="{{asset('landing/img/02.png')}}" class="img-fluid" alt="screenshots">
-                    <img src="{{asset('landing/img/03.png')}}" class="img-fluid" alt="screenshots">
-                    <img src="{{asset('landing/img/04.png')}}" class="img-fluid" alt="screenshots">
-                    <img src="{{asset('landing/img/05.png')}}" class="img-fluid" alt="screenshots">
-                    <img src="{{asset('landing/img/06.png')}}" class="img-fluid" alt="screenshots">
+                    <img src="{{asset('image/landing.png')}}" class="img-fluid" style="width: 100%; height:500px;" alt="screenshots">
+                    <img src="{{asset('image/login.png')}}" class="img-fluid" style="width: 100%; height:500px;" alt="screenshots">
+                    <img src="{{asset('image/signup.png')}}" class="img-fluid" style="width: 100%; height:500px;" alt="screenshots">
+                    <img src="{{asset('image/dashboard.png')}}" class="img-fluid" style="width: 100%; height:500px;" alt="screenshots">
+                    <img src="{{asset('image/unggah.png')}}" class="img-fluid" style="width: 100%; height:500px;" alt="screenshots">
+                    <img src="{{asset('image/baca3.png')}}" class="img-fluid" style="width: 100%; height:500px;" alt="screenshots">
                 </div>
             </div>
             <!--end app screen carousel-->
@@ -370,7 +370,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="single-blog-card card border-0 shadow-sm">
-                        <span class="category position-absolute badge badge-pill badge-primary">Terbaru</span>
+                        <span class="category position-absolute badge badge-pill badge-primary">Coming Soon</span>
                         <img src="{{asset('landing/img/blog/1.jpg')}}" class="card-img-top position-relative" alt="blog">
                         <div class="card-body">
                             <div class="post-meta mb-2">
@@ -378,44 +378,40 @@
                                     <li class="list-inline-item">Jan 21, 2019</li>
                                 </ul>
                             </div>
-                            <h3 class="h5 card-title"><a href="#">DESIMASI IoT (Internet Of Think)</a></h3>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk.</p>
+                            <h3 class="h5 card-title"><a href="#">Berita Seputar Smaknis</a></h3>
+                            <p class="card-text">SMK NURUL ISLAM CIANJUR</p>
                             <a href="#" class="detail-link">Baca Selengkapnya <span class="ti-arrow-right"></span></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="single-blog-card card border-0 shadow-sm">
-                        <span class="category position-absolute badge badge-pill badge-danger">Technology</span>
+                        <span class="category position-absolute badge badge-pill badge-danger">Coming Soon</span>
                         <img src="{{asset('landing/img/blog/2.jpg')}}" class="card-img-top position-relative" alt="blog">
                         <div class="card-body">
                             <div class="post-meta mb-2">
                                 <ul class="list-inline meta-list">
                                     <li class="list-inline-item">May 26, 2019</li>
-                                    <li class="list-inline-item"><span>30</span> Comments</li>
-                                    <li class="list-inline-item"><span>5</span> Share</li>
                                 </ul>
                             </div>
-                            <h3 class="h5 card-title"><a href="#">Quickly formulate backend</a></h3>
-                            <p class="card-text">Synergistically engage effective ROI after customer directed partnerships.</p>
+                            <h3 class="h5 card-title"><a href="#">Berita Seputar Smaknis</a></h3>
+                            <p class="card-text">SMK NURUL ISLAM CIANJUR</p>
                             <a href="#" class="detail-link">Baca Selengkapnya <span class="ti-arrow-right"></span></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="single-blog-card card border-0 shadow-sm">
-                        <span class="category position-absolute badge badge-pill badge-info">Science</span>
+                        <span class="category position-absolute badge badge-pill badge-info">Coming Soon</span>
                         <img src="{{asset('landing/img/blog/3.jpg')}}" class="card-img-top" alt="blog">
                         <div class="card-body">
                             <div class="post-meta mb-2">
                                 <ul class="list-inline meta-list">
                                     <li class="list-inline-item">Apr 25, 2019</li>
-                                    <li class="list-inline-item"><span>41</span> Comments</li>
-                                    <li class="list-inline-item"><span>30</span> Share</li>
                                 </ul>
                             </div>
-                            <h3 class="h5 card-title"><a href="#">Objectively extend extensive</a></h3>
-                            <p class="card-text">Holisticly mesh open-source leadership rather than proactive users. </p>
+                            <h3 class="h5 card-title"><a href="#">Berita Seputar Smaknis</a></h3>
+                            <p class="card-text">SMK NURUL ISLAM CIANJUR</p>
                             <a href="#" class="detail-link">Baca Selengkapnya <span class="ti-arrow-right"></span></a>
                         </div>
                     </div>

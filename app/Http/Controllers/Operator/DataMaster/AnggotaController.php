@@ -46,7 +46,7 @@ class AnggotaController extends Controller
             $anggota->save();
         }
 
-        return redirect()->route('operator.anggota');
+        return redirect()->route('operator.anggota')->with(['success' => 'Data Berhasil Di Simpan...']);
        
  
     }
@@ -83,7 +83,7 @@ class AnggotaController extends Controller
     {
         $anggota = User::where('id',$id)->delete();
 
-		return redirect()->route('operator.anggota');
+		return redirect()->route('operator.anggota')->with(['success' => 'Data Berhasil Di Hapus...']);
     }
 
 

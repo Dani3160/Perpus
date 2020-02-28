@@ -15,7 +15,7 @@ Baca Novel
 
     <p style="font-size: 15px;">Karya : {{$novel->novel_karya}}</p>
     
-    <img src="{{asset('user/image/default.jpg')}}" class="img-responsive" alt="">
+    <img src="/user/image/novel/{{$novel->novel_gambar}}" class="img-fluid" alt="">
 
     <p class="mt-4">{{$novel->novel_isi}}</p>    
     

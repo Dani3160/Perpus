@@ -65,7 +65,7 @@ class CerpenController extends Controller
         $cerpen = Cerpen::findOrFail($id);
         $cerpen->konfirmasi = $konfirmasi;
         $cerpen->save();
-        return redirect()->route('operator.cerpen')->with(['success' => 'Data Berhasil Di Hapus...']);
+        return redirect()->route('operator.cerpen')->with(['success' => 'Data Berhasil Di Simpan...']);
     }
 
     public function edit($id)
@@ -79,6 +79,6 @@ class CerpenController extends Controller
     {
         $cerpen = Cerpen::where('cerpen_id',$id)->delete();
 
-		return redirect()->route('operator.cerpen');
+		return redirect()->route('operator.cerpen')->with(['success' => 'Data Berhasil Di Hapus...']);
     }
 }

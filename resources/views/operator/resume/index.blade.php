@@ -150,6 +150,12 @@ Resume - Operator
   });
 </script>
 
+<script>
+$(document).ready(function(){
+    $('.toast').toast('show', 1500);
+});
+</script>
+
 <script type="text/javascript">
 function openTabs(evt, cityName) {
   var i, tabcontent, tablinks;

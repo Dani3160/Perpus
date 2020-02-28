@@ -11,9 +11,9 @@ Baca Puisi
  
 @section('konten')
 
-    <h4 class="text-dark mt-3 mb-0" style="font-weight: bold;">{{$puisi->puisi_judul}}</h4>
+    <h4 class="text-dark mt-3 mb-0" style="font-weight: bold;color:#000;">{{$puisi->puisi_judul}}</h4>
 
-    <p style="font-size: 15px;">Karya : {{$puisi->puisi_karya}}</p>
+    <p style="font-size: 15px;color:#000;">Karya : {{$puisi->puisi_karya}}</p>
     
     <img src="/user/image/puisi/{{$puisi->puisi_gambar}}" class="img-fluid" style="height:250px;" alt="">
 
